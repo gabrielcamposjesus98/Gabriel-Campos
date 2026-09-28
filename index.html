@@ -1,0 +1,1132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0E6B60">
+<title>Finanças Isabela & Gabriel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E6B60'/%3E%3Cpath d='M18 40c6-2 8-14 14-14s6 10 14 8' stroke='white' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='46' cy='24' r='4' fill='white'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{color-scheme:light dark}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px}
+img{max-width:100%}
+[hidden]{display:none!important}
+body.anon .month,body.anon nav.tabs,body.anon #fab{display:none!important}
+textarea{font:inherit}
+
+:root{
+  --ground:#F2F4F1; --surface:#FFFFFF; --surface-2:#F7F8F6; --line:#DEE3DE; --line-2:#EBEEEA;
+  --ink:#152027; --muted:#5D6B70; --faint:#8B979A;
+  --accent:#0E6B60; --accent-ink:#FFFFFF; --accent-soft:#DCEFEA;
+  --pos:#1D8049; --pos-soft:#DDF1E3; --neg:#BF3B28; --neg-soft:#F8E1DC; --warn:#A96B12; --warn-soft:#F7EBD3;
+  --s-receita:#1D8049; --s-fixo:#3E5F8A; --s-divida:#9A3F2B; --s-parcela:#6D4FA3; --s-variavel:#0E6B60;
+  --shadow:0 1px 2px rgba(21,32,39,.06),0 8px 24px rgba(21,32,39,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0E1315; --surface:#172024; --surface-2:#1B262A; --line:#2A373C; --line-2:#223034;
+  --ink:#E5ECEA; --muted:#9AA9AC; --faint:#6F7F83;
+  --accent:#4BBFAA; --accent-ink:#06201C; --accent-soft:#16352F;
+  --pos:#5BC98A; --pos-soft:#15301F; --neg:#F07B66; --neg-soft:#3A1D18; --warn:#E3AE55; --warn-soft:#352812;
+  --s-receita:#5BC98A; --s-fixo:#86A7D6; --s-divida:#E08A74; --s-parcela:#B39BE6; --s-variavel:#4BBFAA;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}}
+:root[data-theme="dark"]{
+  --ground:#0E1315; --surface:#172024; --surface-2:#1B262A; --line:#2A373C; --line-2:#223034;
+  --ink:#E5ECEA; --muted:#9AA9AC; --faint:#6F7F83;
+  --accent:#4BBFAA; --accent-ink:#06201C; --accent-soft:#16352F;
+  --pos:#5BC98A; --pos-soft:#15301F; --neg:#F07B66; --neg-soft:#3A1D18; --warn:#E3AE55; --warn-soft:#352812;
+  --s-receita:#5BC98A; --s-fixo:#86A7D6; --s-divida:#E08A74; --s-parcela:#B39BE6; --s-variavel:#4BBFAA;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:0 96px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--ground);border-bottom:1px solid var(--line)}
+.top-in{max-width:1120px;margin:0 auto;padding:12px 16px 0;display:flex;flex-direction:column;gap:10px}
+.brand-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.01em;margin-right:auto}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted);letter-spacing:0}
+.month{display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px}
+.month button{border:0;background:transparent;width:32px;height:32px;border-radius:999px;cursor:pointer;font-size:18px;color:var(--muted)}
+.month button:hover{background:var(--surface-2);color:var(--ink)}
+.month select{border:0;background:transparent;font-weight:600;padding:4px 2px;cursor:pointer;min-width:96px;text-align:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:600}
+.btn:hover{border-color:var(--faint)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.05)}
+.btn.danger{color:var(--neg);border-color:var(--neg-soft);background:var(--neg-soft)}
+.btn.sm{padding:5px 10px;font-size:13px;border-radius:8px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{border:0;background:transparent;padding:9px 12px 11px;cursor:pointer;color:var(--muted);font-weight:600;white-space:nowrap;border-bottom:2px solid transparent}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+main{padding-top:18px;display:flex;flex-direction:column;gap:16px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.panel h2{font-family:var(--display);font-weight:600;font-size:17px;margin:0 0 12px;letter-spacing:-.005em;text-wrap:balance}
+.panel h2 .sub{font-family:var(--body);font-weight:500;font-size:13px;color:var(--muted);margin-left:6px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+.saldo{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,48px);letter-spacing:-.02em;line-height:1.05;margin:6px 0 4px}
+.pos{color:var(--pos)}.neg{color:var(--neg)}.warn{color:var(--warn)}.muted{color:var(--muted)}
+.flow{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.flow-row{display:grid;grid-template-columns:12px 1fr auto;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:3px}
+.bar{height:10px;border-radius:5px;background:var(--line-2);overflow:hidden;display:flex}
+.bar span{display:block;height:100%}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line-2)}
+.kv:last-child{border-bottom:0}
+.kv b{font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill.ok{background:var(--pos-soft);color:var(--pos)}.pill.at{background:var(--warn-soft);color:var(--warn)}.pill.bad{background:var(--neg-soft);color:var(--neg)}
+.tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:6px;border:1px solid currentColor;white-space:nowrap}
+.insights{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.insights li{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start}
+.insights .ic{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:12px;font-weight:700;background:var(--accent-soft);color:var(--accent)}
+/* list */
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolbar input,.toolbar select{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;min-width:0}
+.toolbar input{flex:1 1 200px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.sec{border-radius:14px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.sec-h{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line-2);background:var(--surface-2)}
+.sec-h h3{margin:0;font-size:15px;font-weight:700;margin-right:auto}
+.sec-h .count{color:var(--muted);font-size:13px}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:10px 16px 10px 13px;border-bottom:1px solid var(--line-2);cursor:pointer;width:100%;text-align:left;background:transparent;border-left:3px solid transparent;border-right:0;border-top:0}
+.row.hascat{border-left-color:hsl(var(--ch) 26% 62%)}
+.cat{display:inline-block;padding:1px 7px;border-radius:5px;font-weight:600;font-size:12px;background:hsl(var(--ch) 34% 93%);color:hsl(var(--ch) 30% 30%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cat{background:hsl(var(--ch) 20% 20%);color:hsl(var(--ch) 38% 75%)}
+ :root:not([data-theme="light"]) .row.hascat{border-left-color:hsl(var(--ch) 28% 44%)}}
+:root[data-theme="dark"] .cat{background:hsl(var(--ch) 20% 20%);color:hsl(var(--ch) 38% 75%)}
+:root[data-theme="dark"] .row.hascat{border-left-color:hsl(var(--ch) 28% 44%)}
+.row:last-child{border-bottom:0}
+.row:hover{background:var(--surface-2)}
+.row .d{font-weight:600;overflow-wrap:anywhere}
+.row .meta{grid-column:1;font-size:12.5px;color:var(--muted);display:flex;gap:6px 10px;flex-wrap:wrap}
+.row .v{grid-row:1/span 2;grid-column:2;align-self:center;font-weight:600;text-align:right}
+.empty{padding:18px 16px;color:var(--muted);font-size:14px}
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:8px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line-2)}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--surface);z-index:1}
+thead th{font-size:12px;color:var(--muted);font-weight:600;background:var(--surface-2)}
+thead th:first-child{background:var(--surface-2)}
+tr.total td{font-weight:700;border-top:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td.est{font-style:italic;color:var(--muted)}
+td.cur,th.cur{background:var(--accent-soft)}
+/* cards (faturas) */
+.fat{display:flex;flex-direction:column;gap:10px}
+.fat-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.fat-val{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-.01em}
+.fat-cfg{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted);align-items:center}
+.fat-cfg input{width:56px;border:1px solid var(--line);border-radius:8px;padding:4px 6px;background:var(--surface);text-align:center}
+.catline{display:grid;grid-template-columns:minmax(90px,140px) 1fr auto;gap:10px;align-items:center;font-size:13.5px}
+/* debts */
+.debt{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:12px 0;border-bottom:1px solid var(--line-2)}
+.debt:last-child{border-bottom:0}
+.debt .t{font-weight:700}
+.debt .m{font-size:12.5px;color:var(--muted)}
+.debt .bar{grid-column:1/-1;height:8px}
+.gauge{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gauge .big{font-family:var(--display);font-weight:700;font-size:40px;letter-spacing:-.02em}
+/* chart */
+.chart svg{width:100%;height:auto;display:block}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--body)}
+/* investimentos */
+.inv{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:14px;display:flex;flex-direction:column;gap:10px}
+.inv-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.inv-h .m{font-size:12.5px;color:var(--muted)}
+.inv-acts{display:flex;gap:8px;flex-wrap:wrap}
+.movs{border-top:1px solid var(--line-2);padding-top:8px;display:flex;flex-direction:column;gap:2px;max-height:260px;overflow:auto}
+.mov{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;font-size:13.5px;padding:5px 2px;border-bottom:1px solid var(--line-2)}
+.mov:last-child{border-bottom:0}
+.mov button{border:0;background:transparent;color:var(--neg);cursor:pointer;font-size:12px;font-weight:600}
+.meta-goal{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:4px}
+/* modal */
+.ov{position:fixed;inset:0;background:rgba(10,16,18,.45);z-index:50;display:flex;align-items:flex-end;justify-content:center;padding:16px}
+@media (min-width:640px){.ov{align-items:center}}
+.modal{background:var(--surface);border-radius:16px;width:min(560px,100%);max-height:calc(100% - 8px);overflow:auto;box-shadow:var(--shadow);padding:18px}
+.modal h3{font-family:var(--display);font-size:20px;margin:0 0 14px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form .full{grid-column:1/-1}
+@media (max-width:460px){.form{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:12.5px;font-weight:600;color:var(--muted)}
+.field input,.field select{border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--surface);width:100%}
+.field .hint{font-size:12px;color:var(--faint)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.box{border:1px dashed var(--line);border-radius:12px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check{display:flex;gap:8px;align-items:center;font-weight:600;font-size:14px;cursor:pointer}
+.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.actions .left{margin-right:auto}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;border-radius:999px;padding:14px 20px;box-shadow:var(--shadow);font-size:15px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--ground);padding:10px 16px;border-radius:10px;font-weight:600;z-index:60;font-size:14px;max-width:calc(100% - 32px)}
+.banner{border-radius:12px;padding:12px 14px;background:var(--warn-soft);color:var(--warn);font-weight:600;font-size:14px}
+.help{max-width:70ch}
+.help h3{font-family:var(--display);font-size:17px;margin:18px 0 6px}
+.help p,.help li{color:var(--ink)}
+.help ol,.help ul{padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.switch{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.switch button{border:0;background:var(--surface);padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted)}
+.switch button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+@media (prefers-reduced-motion:no-preference){.modal{animation:up .18s ease-out}@keyframes up{from{transform:translateY(8px);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand-row">
+      <div class="brand">Finanças Isabela &amp; Gabriel<small id="sync">Conectando…</small></div>
+      <div class="month" role="group" aria-label="Mês">
+        <button id="m-prev" aria-label="Mês anterior">‹</button>
+        <select id="m-sel" aria-label="Escolher mês"></select>
+        <button id="m-next" aria-label="Próximo mês">›</button>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+  </div>
+</header>
+<div class="wrap"><main id="main"></main></div>
+<button class="btn primary fab" id="fab">+ Lançar</button>
+<div id="modal-root"></div>
+<div id="toast" class="toast" hidden></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, collection, doc, onSnapshot, setDoc, runTransaction } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const FIREBASE_CONFIG = {"apiKey": "AIzaSyB8Iqhh1IPMCbbGMDR7-qqFLAMXQoYc5og", "authDomain": "financeiro-isabela-e-gabriel.firebaseapp.com", "projectId": "financeiro-isabela-e-gabriel", "storageBucket": "financeiro-isabela-e-gabriel.firebasestorage.app", "messagingSenderId": "1007789855561", "appId": "1:1007789855561:web:382f3f37392c9ff8064098"};
+const SEED = {"2026-07":{"mes":"2026-07","itens":[{"secao":"receita","desc":"Salário  Isabela","valor":20900.0,"id":"xbbdf59b256"},{"secao":"fixo","data":"2026-07-16","desc":"Água e Esfgoto (DAE)","valor":61.73,"cat":"Moradia","forma":"Boleto","id":"xd42f2922f0"},{"secao":"fixo","desc":"Faxina","valor":480.0,"cat":"Moradia","forma":"Pix","id":"x91c03eda55"},{"secao":"fixo","data":"2026-07-20","desc":"Inglês","valor":660.0,"cat":"Educação","forma":"Pix","id":"x9bd7f506c9"},{"secao":"fixo","data":"2026-07-20","desc":"Globo Play","valor":34.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xfd4cfc5300"},{"secao":"fixo","data":"2026-07-20","desc":"Disney+","valor":19.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x2c1e8ee6ea"},{"secao":"fixo","data":"2026-07-20","desc":"Academia","valor":94.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x34957b564c"},{"secao":"fixo","data":"2026-07-20","desc":"Claude AI","valor":125.0,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xf75608589d"},{"secao":"fixo","data":"2026-07-20","desc":"Apple","valor":5.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xb523a118fa"},{"secao":"fixo","data":"2026-07-20","desc":"Claro Celular","valor":100.0,"cat":"Assinaturas","forma":"Pix","id":"x6ce82e01a7"},{"secao":"fixo","desc":"Total Pass","valor":349.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"xf041eea9f7"},{"secao":"fixo","data":"2026-07-26","desc":"Internet","valor":110.0,"cat":"Moradia","forma":"Pix","id":"xa09129dcb2"},{"secao":"divida","data":"2026-07-28","desc":"Acordo Santander","parcela":"08/72","valor":306.99,"forma":"Boleto","id":"x0bec90a421"},{"secao":"divida","data":"2026-07-15","desc":"Consórcio Gabriel","valor":799.5,"forma":"Boleto","id":"x447064fa1c"},{"secao":"divida","data":"2026-07-15","desc":"Consórcio Isabela","valor":1245.94,"forma":"Boleto","id":"x896b71ce22"},{"secao":"parcela","data":"2026-07-20","desc":"Parcelamento Fatura C6 Gabriel","parcela":"01/04","valor":506.73,"forma":"C6 Bank - Gabriel","id":"x246c87bfb6"},{"secao":"parcela","data":"2026-07-20","desc":"Rolo","parcela":"10/10","valor":1626.4,"forma":"C6 Bank - Gabriel","id":"xdc432b3305"},{"secao":"parcela","data":"2026-07-20","desc":"Playstation","parcela":"02/03","valor":10.66,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x29c8727d06"},{"secao":"parcela","data":"2026-07-20","desc":"Não sei","parcela":"02/02","valor":29.45,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xb09e7be232"},{"secao":"parcela","data":"2026-07-20","desc":"Zara","parcela":"02/03","valor":124.33,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x9693ddee86"},{"secao":"parcela","data":"2026-07-20","desc":"Renner","parcela":"02/03","valor":236.5,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"xb6f78002b1"},{"secao":"parcela","data":"2026-07-20","desc":"Centauro","parcela":"02/03","valor":99.99,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"xb58fdd7e00"},{"secao":"parcela","data":"2026-07-20","desc":"Zara","parcela":"02/03","valor":57.66,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x97e00fda1b"},{"secao":"parcela","data":"2026-07-20","desc":"Under Armour","parcela":"02/05","valor":36.18,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x04e6d310f5"},{"secao":"parcela","data":"2026-07-20","desc":"FastShop","parcela":"04/07","valor":48.11,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x4e2dc8ca03"},{"secao":"parcela","data":"2026-07-20","desc":"Mercado Livre","parcela":"04/10","valor":77.17,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x1a646477b2"},{"secao":"parcela","data":"2026-07-20","desc":"Amazon","parcela":"05/06","valor":99.3,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x0bb0135b82"},{"secao":"parcela","data":"2026-07-20","desc":"Brastemp","parcela":"07/10","valor":348.89,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"x538e7af1c8"},{"secao":"parcela","data":"2026-07-20","desc":"Mercado Livre","parcela":"08/12","valor":156.57,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xcce6ea0e87"},{"secao":"parcela","data":"2026-07-20","desc":"B4YOU","parcela":"08/12","valor":5.9,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x8bdba8381a"},{"secao":"parcela","data":"2026-07-20","desc":"Mercado Livre","parcela":"04/10","valor":84.7,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x4704a03ba1"},{"secao":"parcela","data":"2026-07-20","desc":"Presente Mãe (Pix Camilla)","parcela":"02/04","valor":40.5,"cat":"Presentes","forma":"Pix","id":"x7455d283af"},{"secao":"parcela","data":"2026-07-20","desc":"Presente Pai (Pix Camilla)","parcela":"01/03","valor":55.0,"cat":"Presentes","forma":"Pix","id":"x2d45bdb5e4"},{"secao":"parcela","data":"2026-07-10","desc":"Droga Raia","parcela":"02/02","valor":158.87,"cat":"Farmácia & Saúde","forma":"C6 Bank - Isabela","id":"x4e9d89f7f2"},{"secao":"parcela","data":"2026-07-10","desc":"Mash","parcela":"02/02","valor":144.85,"cat":"Vestuário","forma":"C6 Bank - Isabela","id":"x76e2a505a3"},{"secao":"parcela","data":"2026-07-10","desc":"O boticário","parcela":"04/05","valor":111.86,"cat":"Compras","forma":"C6 Bank - Isabela","id":"x1809902f7e"},{"secao":"parcela","data":"2026-07-10","desc":"Resort Cassino","parcela":"06/12","valor":385.17,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"xff26a78c56"},{"secao":"parcela","data":"2026-07-10","desc":"Sistema Financeiro","parcela":"06/12","valor":9.91,"cat":"Outros","forma":"C6 Bank - Isabela","id":"x26765f7fa5"},{"secao":"parcela","data":"2026-07-10","desc":"Parcelamento Fatura C6 Isabela","parcela":"01/02","valor":2764.73,"forma":"C6 Bank - Isabela","id":"xc8ceb7cdc5"},{"secao":"parcela","data":"2026-07-10","desc":"Class For home","parcela":"01/02","valor":251.2,"cat":"Compras","forma":"C6 Bank - Isabela","id":"x474b7791c0"},{"secao":"parcela","data":"2026-07-20","desc":"Honda (Revisão Fit)","parcela":"01/12","valor":330.0,"cat":"Veículo","forma":"C6 Bank - Gabriel","id":"x39a642eef1"},{"secao":"parcela","data":"2026-07-10","desc":"Alavancagem Patrimonial","valor":230.0,"cat":"Outros","forma":"Pix","id":"xd0c7dff936"},{"secao":"parcela","data":"2026-07-20","desc":"Centauro","parcela":"01/04","valor":86.38,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x18360fac29"},{"secao":"variavel","data":"2026-06-21","desc":"SuperMercado Pague Menos","valor":73.78,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xf76309fd3b"},{"secao":"variavel","data":"2026-06-20","desc":"Boutique de Carnes","valor":139.18,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"xf2cfd571f1"},{"secao":"variavel","data":"2026-06-19","desc":"La Boca","valor":128.04,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"xff45c0a3b9"},{"secao":"variavel","data":"2026-06-19","desc":"Fino Sabor","valor":41.99,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x890fc1ca1c"},{"secao":"variavel","data":"2026-06-18","desc":"Zara (Frete)","valor":14.0,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"xd14ada6f56"},{"secao":"variavel","data":"2026-06-18","desc":"Comércio Gismar (1,99)","valor":18.0,"cat":"Outros","forma":"C6 Bank - Gabriel","id":"xf1489d116d"},{"secao":"variavel","data":"2026-06-18","desc":"SuperMercado Pague Menos","valor":110.24,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x30626fa5e3"},{"secao":"variavel","data":"2026-06-18","desc":"Grafike","valor":103.0,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"xc98f387315"},{"secao":"variavel","data":"2026-06-18","desc":"Droga Raia","valor":37.99,"cat":"Farmácia & Saúde","forma":"C6 Bank - Gabriel","id":"x69dfbcadc8"},{"secao":"variavel","data":"2026-06-15","desc":"Oba Hortifruti","valor":24.99,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xf2b9f23074"},{"secao":"variavel","data":"2026-06-15","desc":"SamsClub","valor":163.76,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x73c17fe571"},{"secao":"variavel","data":"2026-06-15","desc":"SuperMercado Pague Menos","valor":458.19,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xda01740afc"},{"secao":"variavel","data":"2026-06-13","desc":"Boutique de Carnes","valor":141.34,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"x7eda17094d"},{"secao":"variavel","data":"2026-06-13","desc":"Varejão Tatu","valor":35.94,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x49f143dd98"},{"secao":"variavel","data":"2026-06-12","desc":"Auto Posto Bola Branca","valor":150.96,"cat":"Combustível","forma":"C6 Bank - Isabela","id":"x17255df982"},{"secao":"variavel","data":"2026-06-12","desc":"SuperMercado São Vicente","valor":68.37,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x0a919c08d5"},{"secao":"variavel","data":"2026-06-12","desc":"SamsClub","valor":55.49,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x0e1195be21"},{"secao":"variavel","data":"2026-06-12","desc":"SuperMercado Pague Menos","valor":222.41,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x178ab98553"},{"secao":"variavel","data":"2026-06-11","desc":"Sheiene (Barbeiro)","valor":200.0,"cat":"Beleza & Cuidados","forma":"C6 Bank - Isabela","id":"x53f1b43a56"},{"secao":"variavel","data":"2026-06-04","desc":"Toyo","valor":120.06,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x5bca50100d"},{"secao":"variavel","data":"2026-06-15","desc":"Casa de Bolo Americana","valor":51.0,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"xaff923e666"},{"secao":"variavel","data":"2026-06-14","desc":"Conveniencia","valor":11.54,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x5c2e9091b6"},{"secao":"variavel","data":"2026-06-13","desc":"Festa do Peão","valor":50.0,"cat":"Lazer & Bar","forma":"C6 Bank - Isabela","id":"x446978edc7"},{"secao":"variavel","data":"2026-06-12","desc":"Estacionamento Festa do Peão","valor":100.0,"cat":"Lazer & Bar","forma":"C6 Bank - Isabela","id":"xed4117b39a"},{"secao":"variavel","data":"2026-06-12","desc":"Auto Posto Brisa","valor":17.9,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"xc5fa6506c2"},{"secao":"variavel","data":"2026-06-12","desc":"Brait","valor":21.67,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xd525d2f650"},{"secao":"variavel","data":"2026-06-09","desc":"Oba Hortifruti","valor":190.28,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xd346c02e04"},{"secao":"variavel","data":"2026-06-06","desc":"Ifood","valor":184.33,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x5ed2534f09"},{"secao":"variavel","data":"2026-06-06","desc":"Moriah Cafe","valor":39.5,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x827d2b87b4"},{"secao":"variavel","data":"2026-06-05","desc":"Ifood","valor":69.2,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"xbee7cf7e20"},{"secao":"variavel","data":"2026-06-23","desc":"99.0","valor":13.4,"cat":"Transporte","forma":"C6 Bank - Gabriel","id":"xa22f37ec57"},{"secao":"variavel","data":"2026-06-24","desc":"SuperMercado Pague Menos","valor":63.84,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xa2193d0b1c"},{"secao":"variavel","data":"2026-06-24","desc":"SuperMercado Pague Menos","valor":88.66,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x6e299ff861"},{"secao":"variavel","data":"2026-06-24","desc":"Oba Hortifruti","valor":24.98,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xa996eae34f"},{"secao":"variavel","data":"2026-06-26","desc":"SamsClub","valor":165.58,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xed7795f5f8"},{"secao":"variavel","data":"2026-06-27","desc":"Festa Junina Dom Pedro","valor":100.0,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"xf80df8d0ee"},{"secao":"variavel","data":"2026-06-27","desc":"Festa Junina Dom Pedro","valor":70.0,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"xad33e6f6c8"},{"secao":"variavel","data":"2026-06-28","desc":"Point do Coco","valor":21.5,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"x954424466d"},{"secao":"variavel","data":"2026-06-29","desc":"Drinkoffee","valor":21.5,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x6ff8a97f49"},{"secao":"variavel","data":"2026-06-30","desc":"Santa Rosa","valor":90.19,"cat":"Moradia","forma":"C6 Bank - Gabriel","id":"xdc0997fba6"},{"secao":"variavel","data":"2026-06-30","desc":"SuperMercado São Vicente","valor":9.89,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xca3df51418"},{"secao":"variavel","data":"2026-06-30","desc":"Shell","valor":258.54,"cat":"Combustível","forma":"C6 Bank - Gabriel","id":"x522d634d3d"}]},"2026-08":{"mes":"2026-08","itens":[{"secao":"receita","desc":"Salário Isabela","valor":24000.0,"id":"x16251fcfa3"},{"secao":"fixo","data":"2026-08-16","desc":"Água e Esgoto (DAE)","valor":61.73,"cat":"Moradia","forma":"Boleto","id":"x7e5f59e7eb"},{"secao":"fixo","desc":"Faxina","valor":480.0,"cat":"Moradia","forma":"Pix","id":"xf2070e2af2"},{"secao":"fixo","data":"2026-08-20","desc":"Inglês","valor":400.0,"cat":"Educação","forma":"Pix","id":"xbdc9c030dd"},{"secao":"fixo","data":"2026-08-20","desc":"Globo Play","valor":34.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x0b5a2be3e6"},{"secao":"fixo","data":"2026-08-20","desc":"Disney+","valor":69.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xca93009157"},{"secao":"fixo","data":"2026-08-20","desc":"Academia","valor":94.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x24e4172439"},{"secao":"fixo","data":"2026-08-20","desc":"Claude AI","valor":125.0,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xf4cfc31b04"},{"secao":"fixo","data":"2026-08-20","desc":"Apple","valor":5.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x5946fab00b"},{"secao":"fixo","data":"2026-08-20","desc":"Claro Celular","valor":100.0,"cat":"Assinaturas","forma":"Pix","id":"x644d9e61da"},{"secao":"fixo","data":"2026-08-20","desc":"Total Pass","valor":349.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"x8c46aca067"},{"secao":"fixo","data":"2026-08-26","desc":"Internet","valor":110.0,"cat":"Moradia","forma":"Pix","id":"x8c29e794d2"},{"secao":"fixo","data":"2026-08-20","desc":"Academia","valor":94.9,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"xd7dc0ae1f7"},{"secao":"fixo","data":"2026-08-22","desc":"Seguro Carro","parcela":"01/10","valor":275.93,"cat":"Veículo","forma":"Santander","id":"x0d9616550e"},{"secao":"fixo","desc":"Seguro de Vida Isabela","valor":141.72,"cat":"Assinaturas","forma":"Santander","id":"xb27b2745a4"},{"secao":"fixo","data":"2026-08-20","desc":"Netflix","valor":59.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x1dc4b74711"},{"secao":"fixo","data":"2026-08-28","desc":"Energia Elétrica","valor":229.3,"cat":"Moradia","forma":"Boleto","id":"xcd212d0d76"},{"secao":"divida","data":"2026-08-28","desc":"Acordo Santander","parcela":"09/72","valor":306.99,"forma":"Boleto","id":"xbff740b7e6"},{"secao":"divida","data":"2026-08-15","desc":"Consórcio Gabriel","valor":799.5,"forma":"Boleto","id":"x1bcc9c8420"},{"secao":"divida","data":"2026-08-15","desc":"Consórcio Isabela","valor":1245.94,"forma":"Boleto","id":"x47fd8270c8"},{"secao":"divida","data":"2026-08-20","desc":"Parcelamento Cartão C6 Isabela","parcela":"01/02","valor":2105.73,"forma":"C6 Bank - Isabela","id":"x6921a2d31f"},{"secao":"divida","data":"2026-08-30","desc":"Financiamento Carro","parcela":"1/60","valor":2859.12,"forma":"Boleto","id":"x60b9ef9315"},{"secao":"divida","data":"2026-08-20","desc":"Parcelamento Fatura C6 Isabela","parcela":"02/02","valor":2764.73,"forma":"C6 Bank - Isabela","id":"x517740f1fe"},{"secao":"divida","data":"2026-08-20","desc":"Parcelamento Fatura C6 Gabriel","parcela":"02/04","valor":506.73,"forma":"C6 Bank - Gabriel","id":"x10e283b649"},{"secao":"parcela","data":"2026-08-20","desc":"Playstation","parcela":"03/03","valor":10.66,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xedda52b2d5"},{"secao":"parcela","data":"2026-08-20","desc":"Zara","parcela":"03/03","valor":124.33,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"xc48d4ae78f"},{"secao":"parcela","data":"2026-08-20","desc":"Renner","parcela":"03/03","valor":236.5,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"xf84f944b80"},{"secao":"parcela","data":"2026-08-20","desc":"Centauro","parcela":"03/03","valor":99.99,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x0bdb4a6f38"},{"secao":"parcela","data":"2026-08-20","desc":"Zara","parcela":"03/03","valor":57.66,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x3324ef5c09"},{"secao":"parcela","data":"2026-08-20","desc":"Under Armour","parcela":"03/05","valor":36.18,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"xd514205493"},{"secao":"parcela","data":"2026-08-20","desc":"FastShop","parcela":"05/07","valor":48.11,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x1b42442b64"},{"secao":"parcela","data":"2026-08-20","desc":"Mercado Livre","parcela":"05/10","valor":77.17,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x5f7490f815"},{"secao":"parcela","data":"2026-08-20","desc":"Amazon","parcela":"06/06","valor":99.3,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xecd9b8e20b"},{"secao":"parcela","data":"2026-08-20","desc":"Brastemp","parcela":"08/10","valor":348.89,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"x8859fa47e3"},{"secao":"parcela","data":"2026-08-20","desc":"Mercado Livre","parcela":"09/12","valor":156.57,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x2e7dd56b49"},{"secao":"parcela","data":"2026-08-20","desc":"B4YOU","parcela":"09/12","valor":5.9,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x1c21b3a1b0"},{"secao":"parcela","data":"2026-08-20","desc":"Mercado Livre","parcela":"05/10","valor":84.7,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x68de711593"},{"secao":"parcela","data":"2026-08-20","desc":"Presente Mãe (Pix Camilla)","parcela":"03/04","valor":40.5,"cat":"Presentes","forma":"Pix","id":"xcf1f9e0228"},{"secao":"parcela","data":"2026-08-20","desc":"Presente Pai (Pix Camilla)","parcela":"02/03","valor":41.66,"cat":"Presentes","forma":"Pix","id":"x0260fd9758"},{"secao":"parcela","data":"2026-08-20","desc":"O boticário","parcela":"05/05","valor":111.86,"cat":"Compras","forma":"C6 Bank - Isabela","id":"x7b5dda01b3"},{"secao":"parcela","data":"2026-08-20","desc":"Resort Cassino","parcela":"07/12","valor":385.17,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"x4458c2c229"},{"secao":"parcela","data":"2026-08-20","desc":"Sistema Financeiro","parcela":"07/12","valor":9.91,"cat":"Outros","forma":"C6 Bank - Isabela","id":"x3f68b9d6f0"},{"secao":"parcela","data":"2026-08-20","desc":"Class For home","parcela":"02/02","valor":251.2,"cat":"Compras","forma":"C6 Bank - Isabela","id":"xe5039a854b"},{"secao":"parcela","data":"2026-08-20","desc":"Honda (Revisão Fit)","parcela":"02/12","valor":330.0,"cat":"Veículo","forma":"C6 Bank - Gabriel","id":"xe738b753da"},{"secao":"parcela","data":"2026-08-10","desc":"Alavancagem Patrimonial","valor":220.0,"cat":"Outros","forma":"Pix","id":"xdc8fe8c88e"},{"secao":"parcela","data":"2026-08-20","desc":"Centauro","parcela":"02/04","valor":86.38,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x67b5618735"},{"secao":"parcela","data":"2026-08-02","desc":"Casa Verde (Cadeiras e Banquetas)","parcela":"07/10","valor":455.0,"cat":"Compras","forma":"Boleto","id":"x0c1534904e"},{"secao":"parcela","data":"2026-08-22","desc":"Havan","parcela":"09/10","valor":49.99,"cat":"Compras","forma":"Santander","id":"x2a0e9fa4f6"},{"secao":"parcela","data":"2026-08-22","desc":"Azul Linha Aéreas","parcela":"05/05","valor":155.16,"cat":"Viagem","forma":"Santander","id":"xc321f5c52a"},{"secao":"parcela","data":"2026-08-22","desc":"Saboaria","parcela":"04/04","valor":213.6,"cat":"Compras","forma":"Santander","id":"x17bea10573"},{"secao":"parcela","data":"2026-08-22","desc":"GoCase","parcela":"03/03","valor":76.6,"cat":"Compras","forma":"Santander","id":"x9f0366f180"},{"secao":"parcela","data":"2026-08-22","desc":"Medway","parcela":"02/12","valor":826.68,"cat":"Educação","forma":"Santander","id":"x188928a9f2"},{"secao":"parcela","data":"2026-08-22","desc":"Óticas Diniz","parcela":"02/06","valor":212.5,"cat":"Compras","forma":"Santander","id":"x471a145f95"},{"secao":"parcela","data":"2026-08-22","desc":"Via Dolce","parcela":"02/02","valor":107.0,"cat":"Compras","forma":"Santander","id":"x0d35382b39"},{"secao":"parcela","data":"2026-08-20","desc":"Viagem Maragogi","parcela":"09/10","valor":600.0,"cat":"Viagem","forma":"Pix","id":"xee8a530af0"},{"secao":"parcela","data":"2026-08-20","desc":"Presente João/Camiseta para mim","parcela":"02/02","valor":149.99,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"x5ad1eb17fe"},{"secao":"parcela","data":"2026-08-15","desc":"Renner","parcela":"09/10","valor":79.99,"cat":"Compras","forma":"Pix","id":"x96bf523ca5"},{"secao":"parcela","data":"2026-08-20","desc":"Vivara","parcela":"01/02","valor":93.9,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"x47ed1842a1"},{"secao":"parcela","data":"2026-08-20","desc":"Insulfilm","parcela":"01/10","valor":240.0,"cat":"Veículo","forma":"Santander","id":"xf652c1b3cb"},{"secao":"parcela","data":"2026-08-24","desc":"IPVA","parcela":"01/05","valor":0,"cat":"Veículo","forma":"Boleto","id":"xd7e4e051c7"},{"secao":"variavel","data":"2026-07-04","desc":"Droga Raia","valor":25.1,"cat":"Farmácia & Saúde","forma":"C6 Bank - Isabela","id":"x99b4a918e2"},{"secao":"variavel","data":"2026-07-05","desc":"Posto","valor":122.25,"cat":"Combustível","forma":"C6 Bank - Isabela","id":"x55d0de217c"},{"secao":"variavel","data":"2026-07-05","desc":"Conveniência","valor":51.3,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x10e86ba1d3"},{"secao":"variavel","data":"2026-07-05","desc":"Eden","valor":214.0,"cat":"Lazer & Bar","forma":"C6 Bank - Isabela","id":"x0cf8e2513d"},{"secao":"variavel","data":"2026-07-06","desc":"PagueMenos","valor":571.54,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x6ce0488609"},{"secao":"variavel","data":"2026-07-06","desc":"Oba","valor":176.55,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x497af8fa22"},{"secao":"variavel","data":"2026-07-07","desc":"Zona Azul","valor":10.0,"cat":"Outros","forma":"C6 Bank - Isabela","id":"x030cef248e"},{"secao":"variavel","data":"2026-07-08","desc":"Barbeiro","valor":120.0,"cat":"Beleza & Cuidados","forma":"C6 Bank - Isabela","id":"x9203c65c98"},{"secao":"variavel","data":"2026-07-11","desc":"Avatin","valor":99.0,"cat":"Presentes","forma":"C6 Bank - Isabela","id":"xaa4ec9f69e"},{"secao":"variavel","data":"2026-07-11","desc":"CacauShow","valor":79.96,"cat":"Compras","forma":"C6 Bank - Isabela","id":"xc67b803164"},{"secao":"variavel","data":"2026-07-12","desc":"Di Madre","valor":164.67,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x009342707d"},{"secao":"variavel","data":"2026-07-12","desc":"Moriah Café","valor":5.0,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x6cf54a226f"},{"secao":"variavel","data":"2026-07-14","desc":"Padaria","valor":29.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x0f9212860d"},{"secao":"variavel","data":"2026-07-16","desc":"Droga Raia","valor":316.16,"cat":"Farmácia & Saúde","forma":"Santander","id":"xe816a07abd"},{"secao":"variavel","data":"2026-07-16","desc":"Ifood","valor":123.78,"cat":"Restaurante","forma":"Santander","id":"x4d83649fcb"},{"secao":"variavel","data":"2026-07-17","desc":"PagueMenos","valor":225.33,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xfefb1f1d24"},{"secao":"variavel","data":"2026-07-17","desc":"Paroquia Bom Jesus","valor":120.0,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"x34b9027033"},{"secao":"variavel","data":"2026-07-17","desc":"Paroquia Bom Jesus","valor":50.0,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"x95dc6c2629"},{"secao":"variavel","data":"2026-07-17","desc":"Ameripan","valor":72.05,"cat":"Mercado","forma":"Santander","id":"x7cf789517c"},{"secao":"variavel","data":"2026-07-21","desc":"Manutenção Filtro de água","valor":165.0,"cat":"Moradia","forma":"C6 Bank - Gabriel","id":"xbbea999ecc"},{"secao":"variavel","data":"2026-07-22","desc":"99 Transporte","valor":8.0,"cat":"Transporte","forma":"C6 Bank - Gabriel","id":"x75965ed244"},{"secao":"variavel","data":"2026-07-22","desc":"Fino Sabor","valor":42.99,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x0d75011f7d"},{"secao":"variavel","data":"2026-07-22","desc":"Kopenhagen","valor":11.9,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xfd63cb5e9b"},{"secao":"variavel","data":"2026-07-22","desc":"Casa de Bolos","valor":37.0,"cat":"Restaurante","forma":"Santander","id":"x624685cf39"},{"secao":"variavel","data":"2026-07-22","desc":"Oba","valor":114.46,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x08d14b8ced"},{"secao":"variavel","data":"2026-07-22","desc":"Droga Raia","valor":55.48,"cat":"Farmácia & Saúde","forma":"C6 Bank - Gabriel","id":"xfa3d8bde13"},{"secao":"variavel","data":"2026-07-24","desc":"Brait","valor":35.52,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x4b8fe85439"},{"secao":"variavel","data":"2026-07-24","desc":"Shell","valor":265.64,"cat":"Combustível","forma":"C6 Bank - Gabriel","id":"x6ce575f9ef"},{"secao":"variavel","data":"2026-07-24","desc":"Brait","valor":20.97,"cat":"Mercado","forma":"Santander","id":"xeb38600200"},{"secao":"variavel","data":"2026-07-25","desc":"CacauShow","valor":76.97,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x6b186dfce3"},{"secao":"variavel","data":"2026-07-25","desc":"Outback","valor":290.98,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x299bc0258f"},{"secao":"variavel","data":"2026-07-26","desc":"99Food","valor":31.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xfeba2a0874"},{"secao":"variavel","data":"2026-07-26","desc":"Moriah Café","valor":47.5,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"xf8796d941f"},{"secao":"variavel","data":"2026-07-27","desc":"SamsClub","valor":233.22,"cat":"Mercado","id":"x416fc0a993"},{"secao":"variavel","data":"2026-07-28","desc":"Padaria","valor":29.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xdd94aea5e6"},{"secao":"variavel","data":"2026-07-28","desc":"PagueMenos","valor":51.87,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xf236a5232e"},{"secao":"variavel","data":"2026-07-28","desc":"PagueMenos","valor":62.35,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x284e71e7d5"},{"secao":"variavel","data":"2026-07-29","desc":"PagueMenos","valor":74.88,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xc731d1a674"},{"secao":"variavel","data":"2026-07-29","desc":"Pro Athletica (Barrinha)","valor":12.0,"cat":"Outros","forma":"C6 Bank - Gabriel","id":"x955f11b896"},{"secao":"variavel","data":"2026-07-30","desc":"99 Transporte","valor":11.2,"cat":"Transporte","forma":"C6 Bank - Gabriel","id":"x3933859395"},{"secao":"variavel","data":"2026-07-30","desc":"Uber","valor":19.98,"cat":"Transporte","forma":"Santander","id":"xbaa201183c"},{"secao":"variavel","data":"2026-07-31","desc":"Uber","valor":23.99,"cat":"Transporte","forma":"Santander","id":"x8c9eb31487"},{"secao":"variavel","data":"2026-07-31","desc":"Oba","valor":19.98,"cat":"Mercado","forma":"Santander","id":"xd776c40ab3"},{"secao":"variavel","data":"2026-07-31","desc":"Arrail Frios","valor":98.69,"cat":"Mercado","forma":"Santander","id":"x8497671760"},{"secao":"variavel","data":"2026-07-31","desc":"Ameripan","valor":163.13,"cat":"Mercado","forma":"Santander","id":"x5c4f941d6d"},{"secao":"variavel","data":"2026-07-31","desc":"PagueMenos","valor":176.22,"cat":"Mercado","forma":"Santander","id":"x815fc82657"},{"secao":"variavel","data":"2026-08-01","desc":"Grelha Nobre","valor":139.9,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xa076e3233d"},{"secao":"variavel","data":"2026-08-01","desc":"Açogue Dom Bosco","valor":229.29,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xa048a98b5a"},{"secao":"variavel","data":"2026-08-01","desc":"PagueMenos","valor":31.47,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x020d001d8f"},{"secao":"variavel","data":"2026-08-01","desc":"Posto Bola Branca","valor":50.0,"cat":"Combustível","forma":"C6 Bank - Gabriel","id":"x62bce957ee"},{"secao":"variavel","data":"2026-08-01","desc":"Carvão","valor":55.0,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x3fc7a432a8"},{"secao":"variavel","data":"2026-08-02","desc":"Conveniência(Gelo)","valor":13.0,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x122261b674"},{"secao":"variavel","data":"2026-08-03","desc":"Mercado Livre (Protetor de Parede)","valor":29.99,"cat":"Moradia","forma":"C6 Bank - Gabriel","id":"x1ca4d6bdd9"},{"secao":"variavel","data":"2026-08-03","desc":"Amazon (Shampoo)","valor":57.06,"cat":"Farmácia & Saúde","forma":"C6 Bank - Gabriel","id":"x033f895ec6"},{"secao":"variavel","data":"2026-08-06","desc":"Uber","valor":10.95,"cat":"Transporte","forma":"C6 Bank - Isabela","id":"x69b8b77436"},{"secao":"variavel","data":"2026-08-07","desc":"PagueMenos","valor":164.83,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xc6d8a75c08"},{"secao":"variavel","data":"2026-08-07","desc":"Brait","valor":6.26,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x5450e681bd"},{"secao":"variavel","data":"2026-08-08","desc":"PagueMenos","valor":76.83,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xa01607f507"},{"secao":"variavel","data":"2026-09-09","desc":"Mensalidade Sams Club","valor":75.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"x61d93c03cf"}]},"2026-09":{"mes":"2026-09","itens":[{"secao":"receita","desc":"Salário Isabela","valor":22850.0,"id":"x310a735522"},{"secao":"fixo","data":"2026-09-16","desc":"Água e Esgoto (DAE)","valor":61.73,"cat":"Moradia","forma":"Boleto","id":"xb993f8547f"},{"secao":"fixo","desc":"Faxina","valor":480.0,"cat":"Moradia","forma":"Pix","id":"x3d9fcf5fb1"},{"secao":"fixo","data":"2026-09-20","desc":"Inglês","valor":400.0,"cat":"Educação","forma":"Pix","id":"xef7a815408"},{"secao":"fixo","data":"2026-09-20","desc":"Globo Play","valor":34.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xe2d9b4177b"},{"secao":"fixo","data":"2026-09-20","desc":"Disney+","valor":0,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xca9f605ce7"},{"secao":"fixo","data":"2026-09-20","desc":"Academia","valor":94.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x037b9c4564"},{"secao":"fixo","data":"2026-09-20","desc":"Claude AI","valor":125.0,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xd27ec9b494"},{"secao":"fixo","data":"2026-09-20","desc":"Apple","valor":5.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xb37ff42761"},{"secao":"fixo","data":"2026-09-20","desc":"Claro Celular","valor":100.0,"cat":"Assinaturas","forma":"Pix","id":"xb96c667025"},{"secao":"fixo","data":"2026-09-20","desc":"Total Pass","valor":449.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"xf5a3b6e88e"},{"secao":"fixo","data":"2026-09-26","desc":"Internet","valor":110.0,"cat":"Moradia","forma":"Pix","id":"x0fa64ea217"},{"secao":"fixo","desc":"Seguro de Vida Isabela","valor":141.72,"cat":"Assinaturas","forma":"Santander","id":"xf811e5f74d"},{"secao":"fixo","data":"2026-09-22","desc":"Seguro Carro","parcela":"02/10","valor":275.93,"cat":"Veículo","forma":"Santander","id":"xab74de3a9a"},{"secao":"fixo","data":"2026-09-28","desc":"Energia Elétrica","valor":229.3,"cat":"Moradia","forma":"Boleto","id":"x61999dacbb"},{"secao":"fixo","data":"2026-09-20","desc":"Amazon Prime Vídeo","parcela":"01/12","valor":13.9,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"x46b9a6f45d"},{"secao":"fixo","desc":"Convênio Médico Gabriel","valor":235.0,"cat":"Assinaturas","forma":"Pix","id":"x8e6489ad96"},{"secao":"divida","data":"2026-09-28","desc":"Acordo Santander","parcela":"10/72","valor":306.99,"forma":"Boleto","id":"xbd37849d13"},{"secao":"divida","data":"2026-09-15","desc":"Consórcio","valor":799.5,"forma":"Boleto","id":"x2aa8658d90"},{"secao":"divida","data":"2026-09-15","desc":"Consórcio Isabela","valor":1245.94,"forma":"Boleto","id":"xfd07cac214"},{"secao":"divida","data":"2026-09-20","desc":"Parcelamento Cartão C6 Isabela","parcela":"02/02","valor":2105.73,"forma":"C6 Bank - Isabela","id":"xfad1737569"},{"secao":"divida","data":"2026-09-20","desc":"Parcelamento Fatura C6 Gabriel","parcela":"03/04","valor":506.73,"forma":"C6 Bank - Gabriel","id":"xaa30ac72fa"},{"secao":"divida","data":"2026-09-30","desc":"Financiamento Carro","parcela":"2/60","valor":2859.12,"forma":"Boleto","id":"x84165502b8"},{"secao":"parcela","data":"2026-09-20","desc":"Under Armour","parcela":"04/05","valor":36.18,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x00c7df3051"},{"secao":"parcela","data":"2026-09-20","desc":"FastShop","parcela":"06/07","valor":48.11,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xea53ff4cce"},{"secao":"parcela","data":"2026-09-20","desc":"MercadoLivre","parcela":"06/10","valor":77.17,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x6321a433ad"},{"secao":"parcela","data":"2026-09-20","desc":"Brastemp","parcela":"09/10","valor":348.89,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"xa929df88a7"},{"secao":"parcela","data":"2026-09-20","desc":"Mercado Livre","parcela":"10/12","valor":156.57,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x71314309d8"},{"secao":"parcela","data":"2026-09-20","desc":"B4YOU","parcela":"10/12","valor":5.9,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x2bb9141c26"},{"secao":"parcela","data":"2026-09-20","desc":"Mercado Livre","parcela":"06/10","valor":84.7,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x30c773f490"},{"secao":"parcela","data":"2026-09-20","desc":"Presente Mãe (Pix Camilla)","parcela":"04/04","valor":40.5,"cat":"Presentes","forma":"Pix","id":"xab818d33d1"},{"secao":"parcela","data":"2026-09-20","desc":"Presente Pai (Pix Camilla)","parcela":"03/03","valor":55.0,"cat":"Presentes","forma":"Pix","id":"x7ca1a1bd7a"},{"secao":"parcela","data":"2026-09-20","desc":"Resort Cassino","parcela":"08/12","valor":385.17,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"x6efebd4fac"},{"secao":"parcela","data":"2026-09-20","desc":"Sistema Financeiro","parcela":"08/12","valor":9.91,"cat":"Outros","forma":"C6 Bank - Isabela","id":"x85cc41c669"},{"secao":"parcela","data":"2026-09-20","desc":"Honda (Revisão Fit)","parcela":"03/12","valor":330.0,"cat":"Veículo","forma":"C6 Bank - Isabela","id":"x074038274d"},{"secao":"parcela","data":"2026-09-10","desc":"Alavancagem Patrimonial","valor":134.18,"cat":"Outros","forma":"Pix","id":"x8d097df916"},{"secao":"parcela","data":"2026-09-20","desc":"Centauro","parcela":"03/04","valor":86.38,"cat":"Vestuário","id":"x77dfb343a3"},{"secao":"parcela","data":"2026-09-02","desc":"Casa Verde (Cadeiras e Banquetas)","parcela":"08/10","valor":455.0,"forma":"Boleto","id":"xa399f829b4"},{"secao":"parcela","data":"2026-09-20","desc":"Havan","parcela":"10/10","valor":49.99,"cat":"Compras","forma":"Santander","id":"x1f0e805209"},{"secao":"parcela","data":"2026-09-20","desc":"Medway","parcela":"03/12","valor":826.68,"cat":"Educação","forma":"Santander","id":"x6ff658a8c5"},{"secao":"parcela","data":"2026-09-20","desc":"Óticas Diniz","parcela":"03/06","valor":212.5,"cat":"Compras","forma":"Santander","id":"x98722c98ef"},{"secao":"parcela","data":"2026-09-20","desc":"Viagem Maragogi","parcela":"10/10","valor":600.0,"cat":"Viagem","forma":"Pix","id":"xda02e79c96"},{"secao":"parcela","data":"2026-09-15","desc":"Renner","parcela":"10/10","valor":86.0,"cat":"Compras","forma":"Pix","id":"xe7328f0572"},{"secao":"parcela","data":"2026-09-20","desc":"Vivara","parcela":"02/02","valor":93.9,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"xa830f5f972"},{"secao":"parcela","data":"2026-09-20","desc":"Insulfilm","parcela":"02/10","valor":240.0,"cat":"Veículo","forma":"Santander","id":"x2f41922200"},{"secao":"parcela","data":"2026-09-24","desc":"IPVA","parcela":"02/05","valor":546.16,"cat":"Veículo","forma":"Boleto","id":"xda2f4a31eb"},{"secao":"parcela","data":"2026-09-10","desc":"Rafael Magazine","parcela":"01/02","valor":178.95,"cat":"Presentes","forma":"Nubank","id":"x0832aa45ab"},{"secao":"parcela","data":"2026-09-20","desc":"Seculo Intimo","parcela":"01/02","valor":89.85,"cat":"Presentes","forma":"C6 Bank - Isabela","id":"xad0b80c63f"},{"secao":"variavel","data":"2026-08-03","desc":"Flamma","valor":248.6,"cat":"Lazer & Bar","forma":"Nubank","id":"xcfa08849ed"},{"secao":"variavel","data":"2026-08-04","desc":"Área Azul","valor":10.0,"cat":"Outros","forma":"Nubank","id":"x12a077ae18"},{"secao":"variavel","data":"2026-08-05","desc":"Mc Donalds(Ifood)","valor":139.88,"cat":"Restaurante","forma":"Nubank","id":"x2eef4dddb4"},{"secao":"variavel","data":"2026-08-06","desc":"Shell","valor":257.46,"cat":"Combustível","forma":"Nubank","id":"x8175941511"},{"secao":"variavel","data":"2026-08-07","desc":"Hering","valor":79.99,"cat":"Presentes","forma":"Nubank","id":"xc629985628"},{"secao":"variavel","data":"2026-08-07","desc":"Açogue Dom Bosco","valor":44.18,"cat":"Mercado","forma":"Nubank","id":"x4c321871f7"},{"secao":"variavel","data":"2026-08-07","desc":"Carvalho(Presente Marcos)","valor":114.0,"cat":"Presentes","forma":"Nubank","id":"xb96b2f1bb9"},{"secao":"variavel","data":"2026-08-09","desc":"Amazon (Refri latas)","valor":70.44,"cat":"Mercado","forma":"Nubank","id":"xad27610247"},{"secao":"variavel","data":"2026-08-10","desc":"Açogue Dom Bosco","valor":166.66,"cat":"Mercado","forma":"Nubank","id":"x43bbbb4184"},{"secao":"variavel","data":"2026-08-10","desc":"Shein(Capinhas)","valor":36.3,"cat":"Compras","forma":"Nubank","id":"xf7a3662fdd"},{"secao":"variavel","data":"2026-08-13","desc":"On the Beach","valor":64.68,"cat":"Lazer & Bar","forma":"Nubank","id":"x65b597371c"},{"secao":"variavel","data":"2026-08-14","desc":"Pague Menos","valor":590.46,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xcb9f9a0adc"},{"secao":"variavel","data":"2026-08-14","desc":"TotalPass","valor":100.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"x42c4c60fdd"},{"secao":"variavel","data":"2026-08-14","desc":"Barbeiro","valor":120.0,"cat":"Beleza & Cuidados","forma":"C6 Bank - Gabriel","id":"x0d9f434cc5"},{"secao":"variavel","data":"2026-08-14","desc":"Produto Vonixx","valor":50.8,"cat":"Veículo","forma":"C6 Bank - Gabriel","id":"x106d7e9ec4"},{"secao":"variavel","data":"2026-08-14","desc":"Lojão Hortifrutti","valor":59.74,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x239711cf1d"},{"secao":"variavel","data":"2026-08-14","desc":"GABC","valor":115.69,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x8c7681cffc"},{"secao":"variavel","data":"2026-08-14","desc":"Mercado Livre (Balança)","valor":39.99,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xc047e7fdf4"},{"secao":"variavel","data":"2026-08-14","desc":"Tempero","valor":10.4,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x160a4eb7da"},{"secao":"variavel","data":"2026-08-15","desc":"Moriah Café","valor":16.0,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x76371bbe0a"},{"secao":"variavel","data":"2026-08-15","desc":"Sams Club","valor":289.47,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xe94edbc5ca"},{"secao":"variavel","data":"2026-08-15","desc":"Posto Shell","valor":223.84,"cat":"Combustível","forma":"C6 Bank - Isabela","id":"x2495747756"},{"secao":"variavel","data":"2026-08-16","desc":"Oba","valor":21.27,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x15d2183f8c"},{"secao":"variavel","data":"2026-08-16","desc":"Pedágio","valor":12.8,"cat":"Veículo","forma":"C6 Bank - Isabela","id":"xde1902cc82"},{"secao":"variavel","data":"2026-08-16","desc":"Lindt","valor":50.84,"cat":"Compras","forma":"C6 Bank - Isabela","id":"x4729ae1efd"},{"secao":"variavel","data":"2026-08-16","desc":"Iguatemi","valor":35.0,"cat":"Veículo","forma":"C6 Bank - Isabela","id":"x29c35846be"},{"secao":"variavel","data":"2026-08-16","desc":"Convêniencia","valor":30.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xa9c6145ff6"},{"secao":"variavel","data":"2026-08-16","desc":"Centauro","valor":69.99,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x31aaa89f80"},{"secao":"variavel","data":"2026-08-16","desc":"Abraccio","valor":186.58,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x2d1a3a41f7"},{"secao":"variavel","data":"2026-08-16","desc":"Cinemark","valor":15.0,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"x649954d9b0"},{"secao":"variavel","data":"2026-08-16","desc":"Pedágio","valor":12.8,"cat":"Veículo","forma":"C6 Bank - Gabriel","id":"xd2a6ff484a"},{"secao":"variavel","data":"2026-08-17","desc":"Shopee","valor":99.99,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x9c06e36371"},{"secao":"variavel","data":"2026-08-18","desc":"Padaria","valor":11.0,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x2b9affc508"},{"secao":"variavel","data":"2026-08-18","desc":"Amazon (Bastão assadura e garrafa)","valor":36.09,"cat":"Compras","forma":"C6 Bank - Isabela","id":"x69fff00db6"},{"secao":"variavel","data":"2026-08-19","desc":"Presente Gledis e Paty","valor":161.0,"cat":"Presentes","forma":"Santander","id":"x6075a27efc"},{"secao":"variavel","data":"2026-08-19","desc":"Oba","valor":130.0,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x722910925f"},{"secao":"variavel","data":"2026-08-19","desc":"Sams Club","valor":189.38,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x5ced9aacc7"},{"secao":"variavel","data":"2026-08-19","desc":"C&A (Meia Corrida)","valor":69.97,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x04fc554fe1"},{"secao":"variavel","data":"2026-08-19","desc":"Conveniencia","valor":10.0,"cat":"Outros","forma":"C6 Bank - Gabriel","id":"x6fd81f94ec"},{"secao":"variavel","data":"2026-08-20","desc":"PagueMenos","valor":63.7,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x5e91326a7d"},{"secao":"variavel","data":"2026-08-20","desc":"Renascer Pizzaria","valor":132.0,"cat":"Restaurante","forma":"Santander","id":"x0caf7bba44"},{"secao":"variavel","data":"2026-08-21","desc":"Brait","valor":17.75,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x081e3ed78b"},{"secao":"variavel","data":"2026-08-21","desc":"Droga Raia","valor":66.37,"cat":"Farmácia & Saúde","forma":"C6 Bank - Gabriel","id":"x1084eb6754"},{"secao":"variavel","data":"2026-08-21","desc":"Supermecado São Vicente","valor":32.21,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xd30222865a"},{"secao":"variavel","data":"2026-08-23","desc":"PagueMenos","valor":114.7,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x36e318204b"},{"secao":"variavel","data":"2026-08-23","desc":"Conveniencia","valor":7.33,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xb0e51eb7a5"},{"secao":"variavel","data":"2026-08-25","desc":"M.L(VR. Total R$108,97 / 3)","valor":36.33,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x9ff1610b2a"},{"secao":"variavel","data":"2026-08-26","desc":"Combustível","valor":242.95,"cat":"Combustível","forma":"C6 Bank - Gabriel","id":"x9e9a0535cc"},{"secao":"variavel","data":"2026-08-26","desc":"Brait","valor":27.57,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x599ce0c7a3"},{"secao":"variavel","data":"2026-08-27","desc":"Lojão Hortifruti","valor":11.96,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xbaf0cf85e6"},{"secao":"variavel","data":"2026-08-27","desc":"Cacau Supremo","valor":175.0,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x7d650c7ab9"},{"secao":"variavel","data":"2026-08-27","desc":"Brait","valor":32.3,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x97a7b1221d"},{"secao":"variavel","data":"2026-08-27","desc":"Açogue Dom Bosco","valor":99.93,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x1d0027273a"},{"secao":"variavel","data":"2026-08-28","desc":"Fino Sabor","valor":42.99,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x332c915231"},{"secao":"variavel","data":"2026-08-28","desc":"Centauro","valor":120.98,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x31f3a3a370"},{"secao":"variavel","data":"2026-08-28","desc":"Renner","valor":79.9,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xb75f81df7a"},{"secao":"variavel","data":"2026-08-29","desc":"Droga Raia","valor":20.36,"cat":"Farmácia & Saúde","forma":"C6 Bank - Gabriel","id":"xeda9cf463f"},{"secao":"variavel","data":"2026-08-29","desc":"Conveniencia","valor":13.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x66bd89e638"},{"secao":"variavel","data":"2026-08-29","desc":"Black Lab","valor":159.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x30b3f75d9d"},{"secao":"variavel","data":"2026-08-31","desc":"Booking","valor":780.0,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"xc07f8c94ff"},{"secao":"variavel","data":"2026-08-31","desc":"Droga Raia","valor":155.03,"cat":"Farmácia & Saúde","forma":"Santander","id":"x3e28ba45c5"},{"secao":"variavel","data":"2026-09-02","desc":"Barbeiro","valor":120.0,"cat":"Beleza & Cuidados","forma":"C6 Bank - Gabriel","id":"x53669ba1b6"},{"secao":"variavel","data":"2026-09-02","desc":"PagueMenos","valor":23.78,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xfb483779c7"},{"secao":"variavel","data":"2026-09-03","desc":"Atria Louizide","valor":34.5,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"xc9cc04f367"},{"secao":"variavel","data":"2026-09-03","desc":"Churrascaria Boi De Mi","valor":30.0,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"x5d492f0cae"},{"secao":"variavel","data":"2026-09-04","desc":"Super Coelho Diniz","valor":98.37,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"xa617a95f6b"},{"secao":"variavel","data":"2026-09-04","desc":"Grill","valor":127.32,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"x227edb84fa"},{"secao":"variavel","data":"2026-09-04","desc":"Farinho","valor":30.0,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"xacd373cd1f"},{"secao":"variavel","data":"2026-09-05","desc":"Domo","valor":77.46,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"x65f15ca74c"},{"secao":"variavel","data":"2026-09-05","desc":"Amigo","valor":35.79,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"x897efbae65"},{"secao":"variavel","data":"2026-09-05","desc":"Super Coelho Diniz","valor":54.92,"cat":"Viagem","forma":"C6 Bank - Gabriel","id":"xe5d414feab"},{"secao":"variavel","data":"2026-09-06","desc":"McDonalds Ipatinga","valor":65.8,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"xc8deb55577"},{"secao":"variavel","data":"2026-09-07","desc":"TikTok Shop","valor":65.89,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x0cfcadadbb"},{"secao":"variavel","data":"2026-09-07","desc":"Carlistos Burger","valor":47.04,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xb43953dd63"},{"secao":"variavel","data":"2026-09-10","desc":"Padaria","valor":23.82,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x9d5599ec3d"}]},"2026-10":{"mes":"2026-10","itens":[{"secao":"receita","desc":"Salário  Isabela","valor":22700.0,"id":"x99fed383d6"},{"secao":"fixo","data":"2026-10-16","desc":"Água e Esgoto (DAE)","valor":61.73,"cat":"Moradia","forma":"Boleto","id":"x4b790c7320"},{"secao":"fixo","desc":"Faxina","valor":480.0,"cat":"Moradia","forma":"Pix","id":"x1bef41708c"},{"secao":"fixo","data":"2026-10-20","desc":"Inglês","valor":400.0,"cat":"Educação","forma":"Pix","id":"x602038cb2b"},{"secao":"fixo","data":"2026-10-20","desc":"Globo Play","valor":34.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x986fd46614"},{"secao":"fixo","data":"2026-10-20","desc":"Crédito Sem Parar","valor":50.0,"cat":"Assinaturas","forma":"Santander","id":"x6bcc3b9ae3"},{"secao":"fixo","data":"2026-10-20","desc":"Academia","valor":94.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x5158e3f471"},{"secao":"fixo","data":"2026-10-20","desc":"Claude AI","valor":125.0,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xe419d16f77"},{"secao":"fixo","data":"2026-10-20","desc":"Apple","valor":5.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xb4efcf90f8"},{"secao":"fixo","data":"2026-10-20","desc":"Claro Celular","valor":100.0,"cat":"Assinaturas","forma":"Pix","id":"xb78d187855"},{"secao":"fixo","data":"2026-10-20","desc":"Total Pass","valor":449.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"xd2922c79de"},{"secao":"fixo","data":"2026-10-26","desc":"Internet","valor":110.0,"cat":"Moradia","forma":"Pix","id":"xc2057e2742"},{"secao":"fixo","desc":"Seguro de Vida Isabela","valor":141.72,"cat":"Assinaturas","forma":"Santander","id":"xd6f7ea3f50"},{"secao":"fixo","data":"2026-10-22","desc":"Seguro Carro","parcela":"03/10","valor":275.93,"cat":"Veículo","forma":"Santander","id":"xa6b76ad889"},{"secao":"fixo","data":"2026-10-28","desc":"Energia Elétrica","valor":229.3,"cat":"Moradia","forma":"Boleto","id":"xf075d43b32"},{"secao":"fixo","data":"2026-10-20","desc":"Amazon Prime Vídeo","parcela":"02/12","valor":13.9,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"x3844a334ab"},{"secao":"fixo","desc":"Convênio Médico Gabriel","valor":235.0,"cat":"Assinaturas","forma":"Pix","id":"x0ab7723a8b"},{"secao":"divida","data":"2026-10-15","desc":"Consórcio Isabela","valor":1245.94,"forma":"Boleto","id":"x8ef350581f"},{"secao":"divida","data":"2026-10-15","desc":"Consórcio","valor":799.5,"forma":"Boleto","id":"xf300ef4385"},{"secao":"divida","data":"2026-10-20","desc":"Parcelamento Fatura C6 Gabriel","parcela":"04/04","valor":506.73,"forma":"C6 Bank - Gabriel","id":"x3768004109"},{"secao":"divida","data":"2026-10-28","desc":"Acordo Santander","parcela":"11/72","valor":306.99,"forma":"Boleto","id":"x4637fe85cc"},{"secao":"divida","data":"2026-10-30","desc":"Financiamento Carro","parcela":"3/60","valor":2859.12,"forma":"Boleto","id":"x9c5dcd6642"},{"secao":"parcela","data":"2026-10-20","desc":"Under Armour","parcela":"05/05","valor":36.18,"cat":"Vestuário","forma":"C6 Bank - Gabriel","id":"x74c3fcb8be"},{"secao":"parcela","data":"2026-10-20","desc":"FastShop(Mouse)","parcela":"07/07","valor":48.11,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x94efc324de"},{"secao":"parcela","data":"2026-10-20","desc":"Mercado Livre(Teclado)","parcela":"07/10","valor":77.17,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xfba0b51113"},{"secao":"parcela","data":"2026-10-20","desc":"Brastemp (Geladeira Lari e Alex)","parcela":"10/10","valor":348.89,"cat":"Presentes","forma":"C6 Bank - Gabriel","id":"xb7f3e8b41d"},{"secao":"parcela","data":"2026-10-20","desc":"Mercado Livre","parcela":"11/12","valor":156.57,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xdf38215f5c"},{"secao":"parcela","data":"2026-10-20","desc":"B4YOU","parcela":"11/12","valor":5.9,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x258cc0ce7e"},{"secao":"parcela","data":"2026-10-20","desc":"Mercado Livre","parcela":"07/10","valor":84.7,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x0023d388a3"},{"secao":"parcela","data":"2026-10-20","desc":"Resort Cassino","parcela":"09/12","valor":385.17,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"x48f820fe20"},{"secao":"parcela","data":"2026-10-20","desc":"Sistema Financeiro","parcela":"09/12","valor":9.91,"cat":"Outros","forma":"C6 Bank - Isabela","id":"xf2e23fe6d3"},{"secao":"parcela","data":"2026-10-20","desc":"Honda (Revisão Fit)","parcela":"04/12","valor":330.0,"cat":"Veículo","forma":"C6 Bank - Isabela","id":"x37f706ae51"},{"secao":"parcela","data":"2026-10-10","desc":"Alavancagem Patrimonial","valor":160.0,"cat":"Outros","forma":"Pix","id":"xb1d8b1da1d"},{"secao":"parcela","data":"2026-10-20","desc":"Centauro","parcela":"04/04","valor":86.38,"cat":"Vestuário","id":"xeed3045b40"},{"secao":"parcela","data":"2026-10-02","desc":"Casa Verde (Cadeiras e Banquetas)","parcela":"09/10","valor":455.0,"cat":"Compras","forma":"Boleto","id":"x78acc00c98"},{"secao":"parcela","data":"2026-10-20","desc":"Medway","parcela":"04/12","valor":826.68,"cat":"Educação","forma":"Santander","id":"xfdfe66ad54"},{"secao":"parcela","data":"2026-10-20","desc":"Óticas Diniz","parcela":"04/06","valor":212.5,"cat":"Compras","forma":"Santander","id":"x93828a4df3"},{"secao":"parcela","data":"2026-10-20","desc":"Insulfilm","parcela":"03/10","valor":240.0,"cat":"Veículo","forma":"Santander","id":"x6ee538dc90"},{"secao":"parcela","data":"2026-10-24","desc":"IPVA","parcela":"03/05","valor":546.16,"cat":"Veículo","forma":"Boleto","id":"xe6787e6597"},{"secao":"parcela","data":"2026-10-10","desc":"Rafael Magazine","parcela":"02/02","valor":185.95,"cat":"Presentes","forma":"Nubank","id":"x0ff10645fb"},{"secao":"parcela","data":"2026-10-20","desc":"Seculo Intimo","parcela":"02/02","valor":89.85,"cat":"Presentes","forma":"C6 Bank - Isabela","id":"x37c6b221ef"},{"secao":"parcela","data":"2026-10-10","desc":"Renner","parcela":"01/02","valor":209.85,"cat":"Compras","forma":"Nubank","id":"x55decbd5e7"},{"secao":"parcela","data":"2026-10-10","desc":"Aramis","parcela":"01/02","valor":349.49,"cat":"Compras","forma":"Nubank","id":"x697479081e"},{"secao":"parcela","data":"2026-10-20","desc":"Autore","parcela":"01/02","valor":317.49,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x59fb571cf8"},{"secao":"variavel","data":"2026-09-02","desc":"Yogoberry","valor":29.0,"cat":"Restaurante","forma":"Nubank","id":"x3ea5d7e163"},{"secao":"variavel","data":"2026-09-02","desc":"Estacionamento shopping","valor":14.0,"cat":"Veículo","forma":"Nubank","id":"xe54df77154"},{"secao":"variavel","data":"2026-09-02","desc":"Estacionamento ViraCopos","valor":136.49,"cat":"Viagem","forma":"Nubank","id":"x32ae972629"},{"secao":"variavel","data":"2026-09-03","desc":"Presente Túlio e Ester","valor":492.9,"cat":"Presentes","forma":"Nubank","id":"xc24eab8cbf"},{"secao":"variavel","data":"2026-09-03","desc":"Localiza","valor":660.07,"cat":"Viagem","forma":"Nubank","id":"x38c99f31c0"},{"secao":"variavel","data":"2026-09-03","desc":"Pedágio","valor":45.24,"cat":"Viagem","forma":"Nubank","id":"xcf14b099fe"},{"secao":"variavel","data":"2026-09-03","desc":"Posto Jr Faisão","valor":50.93,"cat":"Viagem","forma":"Nubank","id":"x3de7bb2953"},{"secao":"variavel","data":"2026-09-03","desc":"Valor extra Hotel","valor":240.0,"cat":"Viagem","forma":"Nubank","id":"x553a7e86e0"},{"secao":"variavel","data":"2026-09-03","desc":"Hotel e Restaurante","valor":24.9,"cat":"Viagem","forma":"Nubank","id":"xdbee4241f9"},{"secao":"variavel","data":"2026-09-04","desc":"Banco do Nestor (Queijo e Doce de Leite)","valor":60.0,"cat":"Viagem","forma":"Nubank","id":"x474d87aa03"},{"secao":"variavel","data":"2026-09-05","desc":"Joy Studio","valor":300.0,"cat":"Viagem","forma":"Nubank","id":"xb54779b71c"},{"secao":"variavel","data":"2026-09-06","desc":"Posto Hotel","valor":145.0,"cat":"Viagem","forma":"Nubank","id":"x6ea4374367"},{"secao":"variavel","data":"2026-09-06","desc":"Posto Jr Faisão","valor":61.21,"cat":"Viagem","forma":"Nubank","id":"xf71a53f47d"},{"secao":"variavel","data":"2026-09-06","desc":"Posto Duo Drive","valor":57.25,"cat":"Viagem","forma":"Nubank","id":"x7731a9afc4"},{"secao":"variavel","data":"2026-09-07","desc":"Crema Supermercados","valor":58.7,"cat":"Mercado","forma":"Nubank","id":"xcbbd7d6265"},{"secao":"variavel","data":"2026-09-09","desc":"PagueMenos","valor":73.82,"cat":"Mercado","forma":"Nubank","id":"xca1b5e0dcb"},{"secao":"variavel","data":"2026-09-10","desc":"Posto","valor":254.15,"cat":"Combustível","forma":"Nubank","id":"x87a2e77ac6"},{"secao":"variavel","data":"2026-09-11","desc":"Pedágio","valor":12.8,"cat":"Veículo","forma":"C6 Bank - Gabriel","id":"x3f11b6342b"},{"secao":"variavel","data":"2026-09-12","desc":"The Poke House","valor":60.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x761c6acdaf"},{"secao":"variavel","data":"2026-09-12","desc":"Fassina lanches","valor":153.56,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xf132d75f30"},{"secao":"variavel","data":"2026-09-13","desc":"Sergel","valor":106.8,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x5606e6f22f"},{"secao":"variavel","data":"2026-09-13","desc":"PagueMenos","valor":51.46,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xe6da2b74d8"},{"secao":"variavel","data":"2026-09-13","desc":"PagueMenos","valor":489.58,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xbc1061832f"},{"secao":"variavel","data":"2026-09-13","desc":"Sams Club","valor":552.38,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x78fa5363f8"},{"secao":"variavel","data":"2026-09-13","desc":"Conveniencia","valor":18.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xde490dcd98"},{"secao":"variavel","data":"2026-09-13","desc":"Carlistor Burger (99)","valor":88.18,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x99342816d2"},{"secao":"variavel","data":"2026-09-15","desc":"PagueMenos","valor":37.76,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xb8ef0e2331"},{"secao":"variavel","data":"2026-09-16","desc":"Brait","valor":10.77,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x9168f46503"},{"secao":"variavel","data":"2026-09-16","desc":"Lanche","valor":24.0,"cat":"Restaurante","forma":"Santander","id":"x8b7dcc839c"},{"secao":"variavel","data":"2026-09-17","desc":"PagueMenos","valor":187.3,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x003f9e7be8"},{"secao":"variavel","data":"2026-09-17","desc":"Pratos (oxford)","valor":187.0,"cat":"Compras","forma":"C6 Bank - Isabela","id":"x22f6e22ec3"},{"secao":"variavel","data":"2026-09-17","desc":"Amazon","valor":124.16,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xe0d9176d8b"},{"secao":"variavel","data":"2026-09-17","desc":"Padoca da Alma(Vr. Real R$22,00)","valor":8.8,"cat":"Restaurante","forma":"C6 Bank - Isabela","id":"x3adb1c2edc"},{"secao":"variavel","data":"2026-09-17","desc":"SuperMercado Crema","valor":58.62,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x1446c25d65"},{"secao":"variavel","data":"2026-09-17","desc":"SuperMercado Crema(Fondue) (Vr. Real R$164,50)","valor":65.8,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"x80a044b52e"},{"secao":"variavel","data":"2026-09-17","desc":"Brait (Vr. Real R$42,74)","valor":17.0,"cat":"Mercado","forma":"C6 Bank - Isabela","id":"xc5cd4d9070"},{"secao":"variavel","data":"2026-09-17","desc":"TikTok Shop (Capinhas e Tábua)","valor":88.99,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xd1e4e8eaf4"},{"secao":"variavel","data":"2026-09-18","desc":"Brait","valor":18.02,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x708e2a6898"},{"secao":"variavel","data":"2026-09-19","desc":"InterCarnes (R$351,28)","valor":58.54,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"xf07666729b"},{"secao":"variavel","data":"2026-09-19","desc":"Açogue Dom Bosco (R$45,33)","valor":7.55,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"x8c3339d431"},{"secao":"variavel","data":"2026-09-19","desc":"Pague Menos","valor":48.4,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"x2ed233132e"},{"secao":"variavel","data":"2026-09-19","desc":"Temperos","valor":6.85,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xcafbe4bbd8"},{"secao":"variavel","data":"2026-09-19","desc":"Oba","valor":104.46,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xf363c8c3ae"},{"secao":"variavel","data":"2026-09-19","desc":"Posto Shell","valor":258.17,"cat":"Combustível","forma":"C6 Bank - Gabriel","id":"xf89287991c"},{"secao":"variavel","data":"2026-09-19","desc":"Brait (R$12,75)","valor":2.12,"cat":"Lazer & Bar","forma":"C6 Bank - Gabriel","id":"x817f39c3fb"},{"secao":"variavel","data":"2026-09-21","desc":"Mercado Livre (Fixador de Porta)","valor":23.9,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x48e070b949"},{"secao":"variavel","data":"2026-09-21","desc":"Live (Presente Diniz)","valor":194.5,"cat":"Presentes","forma":"C6 Bank - Isabela","id":"x4300f78ea6"},{"secao":"variavel","data":"2026-09-23","desc":"Amazon","valor":97.38,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x8ff915acc9"},{"secao":"variavel","data":"2026-09-23","desc":"Pague Menos","valor":99.56,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xe0daf004f8"},{"secao":"variavel","data":"2026-09-23","desc":"Centauro","valor":134.99,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xcad817de64"},{"secao":"variavel","data":"2026-09-24","desc":"Padaria Amizade","valor":4.86,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x4de73247d6"},{"secao":"variavel","data":"2026-09-24","desc":"PagueMenos","valor":26.99,"cat":"Mercado","forma":"C6 Bank - Gabriel","id":"xbcc0441f0d"},{"secao":"variavel","data":"2026-09-25","desc":"São Carlos Prensadão (Lanche)","valor":100.79,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xfca02cc1a2"},{"secao":"variavel","data":"2026-09-26","desc":"Barbeiro","valor":120.0,"cat":"Beleza & Cuidados","forma":"C6 Bank - Gabriel","id":"x6e71959f37"},{"secao":"variavel","data":"2026-09-26","desc":"Padaria","valor":28.78,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"xa89c261144"},{"secao":"variavel","data":"2026-09-26","desc":"Pizzaria Giorno","valor":207.35,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x9f14cc2a3f"},{"secao":"variavel","data":"2026-09-27","desc":"Sergel","valor":128.0,"cat":"Restaurante","forma":"C6 Bank - Gabriel","id":"x98f7b96188"}]},"2026-11":{"mes":"2026-11","itens":[{"secao":"receita","desc":"Salário — Isabela","valor":20000.0,"id":"xf37478e465"},{"secao":"fixo","desc":"Faxina","valor":480.0,"cat":"Moradia","forma":"Pix","id":"xd321ebd9b8"},{"secao":"fixo","data":"2026-11-16","desc":"Água e Esgoto (DAE)","valor":61.73,"cat":"Moradia","forma":"Boleto","id":"x2afa0c0524"},{"secao":"fixo","data":"2026-11-20","desc":"Inglês","valor":400.0,"cat":"Educação","forma":"Pix","id":"x332220ea2e"},{"secao":"fixo","data":"2026-11-20","desc":"Globo Play","valor":34.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"xb0a4e632c0"},{"secao":"fixo","data":"2026-11-20","desc":"Crédito Sem Parar","valor":50.0,"cat":"Assinaturas","forma":"Santander","id":"xd21c22bd27"},{"secao":"fixo","data":"2026-11-20","desc":"Academia","valor":94.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x4ae34e2277"},{"secao":"fixo","data":"2026-11-20","desc":"Claude AI","valor":125.0,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x5efba9d523"},{"secao":"fixo","data":"2026-11-20","desc":"Apple","valor":5.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x5e0e5d6dba"},{"secao":"fixo","data":"2026-11-20","desc":"Claro Celular","valor":100.0,"cat":"Assinaturas","forma":"Pix","id":"x5c437a2ecb"},{"secao":"fixo","data":"2026-11-20","desc":"Total Pass","valor":449.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"xe5aa636b84"},{"secao":"fixo","data":"2026-11-26","desc":"Internet","valor":110.0,"cat":"Moradia","forma":"Pix","id":"x7ed1683092"},{"secao":"fixo","data":"2026-11-20","desc":"Seguro de Vida Isabela","valor":141.72,"cat":"Assinaturas","forma":"Santander","id":"x4cfcff4567"},{"secao":"fixo","data":"2026-11-22","desc":"Seguro Carro","parcela":"03/10","valor":275.93,"cat":"Veículo","forma":"Santander","id":"x91ee526765"},{"secao":"fixo","data":"2026-11-28","desc":"Energia Elétrica","valor":229.3,"cat":"Moradia","forma":"Boleto","id":"xc5546cb079"},{"secao":"fixo","data":"2026-11-20","desc":"Amazon Prime Vídeo","parcela":"03/12","valor":13.9,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"x8d97f2a175"},{"secao":"fixo","desc":"Convênio Médico Gabriel","valor":235.0,"cat":"Assinaturas","forma":"Pix","id":"x812c5df35a"},{"secao":"divida","data":"2026-11-15","desc":"Consórcio Isabela","valor":1245.94,"forma":"Boleto","id":"xf1a3c12fb7"},{"secao":"divida","data":"2026-11-15","desc":"Consórcio Gabriel","valor":799.5,"forma":"Boleto","id":"xba107e55ee"},{"secao":"divida","data":"2026-11-28","desc":"Acordo Santander","parcela":"12/72","valor":306.99,"forma":"Boleto","id":"x369b99d573"},{"secao":"divida","data":"2026-11-30","desc":"Financiamento Carro","parcela":"4/60","valor":2859.12,"forma":"Boleto","id":"xa254b4cddc"},{"secao":"parcela","data":"2026-11-20","desc":"Mercado Livre(Teclado)","parcela":"08/10","valor":77.17,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xf36623a29e"},{"secao":"parcela","data":"2026-11-20","desc":"Mercado Livre","parcela":"12/12","valor":156.57,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x3def5bd1e5"},{"secao":"parcela","data":"2026-11-20","desc":"B4YOU","parcela":"12/12","valor":5.9,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xcf9f9c64ea"},{"secao":"parcela","data":"2026-11-20","desc":"Mercado Livre","parcela":"08/10","valor":84.7,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x28901bff78"},{"secao":"parcela","data":"2026-11-20","desc":"Resort Cassino","parcela":"10/12","valor":385.17,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"x76bf68569a"},{"secao":"parcela","data":"2026-11-20","desc":"Sistema Financeiro","parcela":"10/12","valor":9.91,"cat":"Outros","forma":"C6 Bank - Isabela","id":"x0b65709154"},{"secao":"parcela","data":"2026-11-20","desc":"Honda (Revisão Fit)","parcela":"05/12","valor":330.0,"cat":"Veículo","forma":"C6 Bank - Isabela","id":"xd0252c3360"},{"secao":"parcela","data":"2026-11-10","desc":"Alavancagem Patrimonial","valor":220.0,"cat":"Outros","forma":"Pix","id":"xe498b6c557"},{"secao":"parcela","data":"2026-11-02","desc":"Casa Verde (Cadeiras e Banquetas)","parcela":"09/10","valor":455.0,"cat":"Compras","forma":"Boleto","id":"x2e857daaa7"},{"secao":"parcela","data":"2026-11-20","desc":"Medway","parcela":"04/12","valor":826.68,"cat":"Educação","forma":"Santander","id":"x6dbeb7024c"},{"secao":"parcela","data":"2026-11-20","desc":"Óticas Diniz","parcela":"04/06","valor":212.5,"cat":"Compras","forma":"Santander","id":"xb15ad882ea"},{"secao":"parcela","data":"2026-11-20","desc":"Insulfilm","parcela":"03/10","valor":240.0,"cat":"Veículo","forma":"Santander","id":"x3c92e760b8"},{"secao":"parcela","data":"2026-11-24","desc":"IPVA","parcela":"03/05","valor":546.16,"cat":"Veículo","forma":"Boleto","id":"x6d49264024"},{"secao":"parcela","data":"2026-11-10","desc":"Renner","parcela":"02/02","valor":209.85,"cat":"Compras","forma":"Nubank","id":"x71a05b4319"},{"secao":"parcela","data":"2026-11-10","desc":"Aramis","parcela":"02/02","valor":349.49,"cat":"Compras","forma":"Nubank","id":"x591d1f4ac1"},{"secao":"parcela","data":"2026-11-20","desc":"Autore","parcela":"02/02","valor":317.49,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x961165613c"}]},"2026-12":{"mes":"2026-12","itens":[{"secao":"receita","desc":"Salário — Isabela","valor":20000.0,"id":"x7691008635"},{"secao":"fixo","desc":"Faxina","valor":480.0,"cat":"Moradia","forma":"Pix","id":"x0ffefb91cd"},{"secao":"fixo","data":"2026-12-16","desc":"Água e Esgoto (DAE)","valor":61.73,"cat":"Moradia","forma":"Boleto","id":"xb7ddcea162"},{"secao":"fixo","data":"2026-12-20","desc":"Inglês","valor":400.0,"cat":"Educação","forma":"Pix","id":"x239ec5a7d1"},{"secao":"fixo","data":"2026-12-20","desc":"Globo Play","valor":34.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x97fbb9f18a"},{"secao":"fixo","data":"2026-12-20","desc":"Crédito Sem Parar","valor":50.0,"cat":"Assinaturas","forma":"Santander","id":"xe81f1dcf90"},{"secao":"fixo","data":"2026-12-20","desc":"Academia","valor":94.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x7d7cd67576"},{"secao":"fixo","data":"2026-12-20","desc":"Claude AI","valor":125.0,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x69cf9b72a8"},{"secao":"fixo","data":"2026-12-20","desc":"Apple","valor":5.9,"cat":"Assinaturas","forma":"C6 Bank - Gabriel","id":"x35874e3c41"},{"secao":"fixo","data":"2026-12-20","desc":"Claro Celular","valor":100.0,"cat":"Assinaturas","forma":"Pix","id":"xa7e737c12c"},{"secao":"fixo","data":"2026-12-20","desc":"Total Pass","valor":449.0,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"xb2a5065628"},{"secao":"fixo","data":"2026-12-26","desc":"Internet","valor":110.0,"cat":"Moradia","forma":"Pix","id":"xf88ac84015"},{"secao":"fixo","data":"2026-12-20","desc":"Seguro de Vida Isabela","valor":141.72,"cat":"Assinaturas","forma":"Santander","id":"x0548254e0c"},{"secao":"fixo","data":"2026-12-22","desc":"Seguro Carro","parcela":"04/10","valor":275.93,"cat":"Veículo","forma":"Santander","id":"x38d8385a64"},{"secao":"fixo","data":"2026-12-20","desc":"Amazon Prime Vídeo","parcela":"04/12","valor":13.9,"cat":"Assinaturas","forma":"C6 Bank - Isabela","id":"x21b4c78593"},{"secao":"fixo","data":"2026-12-28","desc":"Energia Elétrica","valor":229.3,"cat":"Moradia","forma":"Boleto","id":"x0249ff64dc"},{"secao":"fixo","desc":"Convênio Médico Gabriel","valor":235.0,"cat":"Assinaturas","forma":"Pix","id":"xc8230d8aac"},{"secao":"divida","data":"2026-12-15","desc":"Consórcio Isabela","valor":1245.94,"forma":"Boleto","id":"xbf69df7a54"},{"secao":"divida","data":"2026-12-15","desc":"Consórcio Gabriel","valor":799.5,"forma":"Boleto","id":"x7a4eae278d"},{"secao":"divida","data":"2026-12-28","desc":"Acordo Santander","parcela":"13/72","valor":306.99,"forma":"Boleto","id":"x1af8729fa0"},{"secao":"divida","data":"2026-12-30","desc":"Financiamento Carro","parcela":"5/60","valor":2859.12,"forma":"Boleto","id":"x038669dd90"},{"secao":"parcela","data":"2026-12-20","desc":"Mercado Livre(Teclado)","parcela":"09/10","valor":77.17,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"xb66cd5024a"},{"secao":"parcela","data":"2026-12-20","desc":"Mercado Livre","parcela":"09/10","valor":84.7,"cat":"Compras","forma":"C6 Bank - Gabriel","id":"x83a64e3dfa"},{"secao":"parcela","data":"2026-12-20","desc":"Resort Cassino","parcela":"11/12","valor":385.17,"cat":"Viagem","forma":"C6 Bank - Isabela","id":"x74c64bdc9a"},{"secao":"parcela","data":"2026-12-20","desc":"Sistema Financeiro","parcela":"11/12","valor":9.91,"cat":"Outros","forma":"C6 Bank - Isabela","id":"xaa2d970cd6"},{"secao":"parcela","data":"2026-12-20","desc":"Honda (Revisão Fit)","parcela":"06/12","valor":330.0,"cat":"Veículo","forma":"C6 Bank - Isabela","id":"x0fbbaab489"},{"secao":"parcela","data":"2026-12-10","desc":"Alavancagem Patrimonial","valor":220.0,"cat":"Outros","forma":"Pix","id":"xbbf57f07b2"},{"secao":"parcela","data":"2026-12-20","desc":"Casa Verde (Cadeiras e Banquetas)","parcela":"10/10","valor":455.0,"cat":"Compras","forma":"Boleto","id":"x2f839a4e6a"},{"secao":"parcela","data":"2026-12-20","desc":"Medway","parcela":"05/12","valor":826.68,"cat":"Educação","forma":"Santander","id":"x3f487925fb"},{"secao":"parcela","data":"2026-12-20","desc":"Óticas Diniz","parcela":"05/06","valor":212.5,"cat":"Compras","forma":"Santander","id":"x7c25da65f6"},{"secao":"parcela","data":"2026-12-20","desc":"Insulfilm","parcela":"05/10","valor":240.0,"cat":"Veículo","forma":"Santander","id":"xadd4d0f6ca"},{"secao":"parcela","data":"2026-12-24","desc":"IPVA","parcela":"05/05","valor":546.16,"cat":"Veículo","forma":"Boleto","id":"xc4944b9b6b"}]},"2027-01":{"mes":"2027-01","itens":[{"secao":"divida","desc":"Acordo Santander","parcela":"14/72","valor":306.99,"id":"xf947aa8589"},{"secao":"divida","desc":"Consórcio","valor":799.5,"id":"x14037e08a4"},{"secao":"divida","data":"2026-01-30","desc":"Financiamento Carro","parcela":"6/60","valor":2859.12,"forma":"Boleto","id":"x2e2a35c28d"}]},"2027-02":{"mes":"2027-02","itens":[{"secao":"divida","desc":"Acordo Santander","parcela":"15/72","valor":306.99,"id":"x41feb48380"},{"secao":"divida","desc":"Consórcio","valor":799.5,"id":"x0a46afa629"}]},"2027-03":{"mes":"2027-03","itens":[{"secao":"divida","desc":"Acordo Santander","parcela":"16/72","valor":306.99,"id":"x81ae5aca9e"},{"secao":"divida","desc":"Consórcio","valor":799.5,"id":"x449e407166"}]},"2027-04":{"mes":"2027-04","itens":[{"secao":"divida","desc":"Acordo Santander","parcela":"17/72","valor":306.99,"id":"x5472a19241"},{"secao":"divida","desc":"Consórcio","valor":799.5,"id":"x19a909fcc5"}]},"2027-05":{"mes":"2027-05","itens":[{"secao":"divida","desc":"Acordo Santander","parcela":"18/72","valor":306.99,"id":"xcf1f8b2d79"},{"secao":"divida","desc":"Consórcio","valor":799.5,"id":"xe1fc9605e8"}]},"2027-06":{"mes":"2027-06","itens":[{"secao":"divida","desc":"Acordo Santander","parcela":"19/72","valor":306.99,"id":"x911eb0bed1"},{"secao":"divida","desc":"Consórcio","valor":799.5,"id":"xe20740656c"}]}};
+
+(function(){
+"use strict";
+const SECOES={receita:{nome:"Receitas",curto:"Receita",cor:"var(--s-receita)"},fixo:{nome:"Gastos fixos",curto:"Fixo",cor:"var(--s-fixo)"},divida:{nome:"Endividamentos",curto:"Dívida",cor:"var(--s-divida)"},parcela:{nome:"Parcelas",curto:"Parcela",cor:"var(--s-parcela)"},variavel:{nome:"Gastos do mês",curto:"Gasto do mês",cor:"var(--s-variavel)"}};
+const ORDEM=["receita","fixo","divida","parcela","variavel"];
+const SAIDAS=["fixo","divida","parcela","variavel"];
+const CATS=["Mercado","Combustível","Lazer & Bar","Restaurante","Farmácia & Saúde","Beleza & Cuidados","Vestuário","Transporte","Educação","Assinaturas","Presentes","Viagem","Eletrônicos","Compras","Moradia","Serviços","Veículo","Outros"];
+const FORMAS=["C6 Bank - Gabriel","C6 Bank - Isabela","Santander","Nubank","Débito","Pix","Dinheiro","Boleto"];
+const CARTOES_PADRAO=[{nome:"C6 Bank - Gabriel",fechamento:11,vencimento:20},{nome:"C6 Bank - Isabela",fechamento:12,vencimento:20},{nome:"Nubank",fechamento:2,vencimento:9},{nome:"Santander",fechamento:16,vencimento:25}];
+const MESES=["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+const MESES_L=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const TABS=[["inicio","Início"],["lancamentos","Lançamentos"],["cartoes","Cartões"],["agenda","Agenda"],["dividas","Dívidas"],["investimentos","Investimentos"],["relatorios","Relatórios"],["ajuda","Como usar"]];
+const TIPOS_INV=["Reserva de emergência","Renda fixa","Tesouro Direto","CDB / LCI / LCA","Fundos","Ações","Fundos imobiliários","Previdência","Cripto","Poupança","Outros"];
+/* matiz (0-360) de cada categoria: cor sóbria, só para separar visualmente */
+const CAT_HUE={"Mercado":95,"Combustível":25,"Lazer & Bar":300,"Restaurante":15,"Farmácia & Saúde":170,"Beleza & Cuidados":330,"Vestuário":265,"Transporte":200,"Educação":220,"Assinaturas":250,"Presentes":345,"Viagem":190,"Eletrônicos":210,"Compras":280,"Moradia":45,"Serviços":160,"Veículo":10,"Outros":215,"Dívidas":0,"Sem categoria":215};
+const hue=c=>CAT_HUE[c]!=null?CAT_HUE[c]:(String(c||"").split("").reduce((a,ch)=>a+ch.charCodeAt(0),0)*37)%360;
+
+const S={db:null,user:null,setup:false,importando:false,confirmImport:false,meses:{},invest:{},config:{cartoes:CARTOES_PADRAO},mes:null,tab:"inicio",ready:false,erro:false,
+  filtro:{secao:"todos",q:"",forma:""},estimar:true,relModo:"pagamento",relTipo:"categoria",cartaoSel:null,invAberto:null};
+const tabId="t"+Math.random().toString(36).slice(2,10);
+try{const t=localStorage.getItem("fin.tab");if(t&&TABS.some(x=>x[0]===t))S.tab=t;}catch(e){}
+
+/* ---------- utils ---------- */
+const brl=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+const R=v=>brl.format(Math.round((v||0)*100)/100);
+const pct=v=>(isFinite(v)?(v*100).toLocaleString("pt-BR",{maximumFractionDigits:0}):"0")+"%";
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const mLabel=m=>{if(!m)return"";const[y,mm]=m.split("-");return MESES[+mm-1]+"/"+y;};
+const mLong=m=>{const[y,mm]=m.split("-");return MESES_L[+mm-1]+" de "+y;};
+const addM=(m,n)=>{let[y,mm]=m.split("-").map(Number);mm+=n;y+=Math.floor((mm-1)/12);mm=((mm-1)%12+12)%12+1;return y+"-"+String(mm).padStart(2,"0");};
+const mOf=d=>d?d.slice(0,7):null;
+const fDate=d=>{if(!d)return"";const[y,m,dd]=d.split("-");return dd+"/"+m+(y!==S.mes.slice(0,4)?"/"+y.slice(2):"");};
+const hojeM=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");};
+const hojeD=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");};
+const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
+const parseValor=s=>{s=String(s||"").trim().replace(/[R$\s]/g,"");if(!s)return NaN;if(s.includes(","))s=s.replace(/\./g,"").replace(",",".");return Math.round(parseFloat(s)*100)/100;};
+const parseParc=p=>{const m=/^\s*(\d+)\s*\/\s*(\d+)\s*$/.exec(p||"");return m?{k:+m[1],n:+m[2]}:null;};
+/* campos de dinheiro: sempre com centavos (1,00 · 10,00 · 1.000,00) */
+const fmtIn=n=>isFinite(n)&&n!==null?Number(n).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}):"";
+function maskMoney(el){const d=el.value.replace(/\D/g,"").replace(/^0+(?=\d)/,"").slice(0,12);el.value=d?(parseInt(d,10)/100).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2}):"";}
+const uid=()=>"n"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const isCartao=f=>S.config.cartoes.some(c=>c.nome===f);
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2600);}
+
+/* fatura: mês de pagamento para uma compra */
+function mesFatura(data,forma){
+  if(!data)return null;
+  const c=S.config.cartoes.find(x=>x.nome===forma);
+  const m=mOf(data);
+  if(!c)return m;
+  const dia=+data.slice(8,10);const F=+c.fechamento||0,V=+c.vencimento||0;
+  if(!F||!V)return addM(m,1);
+  let fech=dia>=F?addM(m,1):m;
+  return V>F?fech:addM(fech,1);
+}
+
+/* ---------- data ---------- */
+const itens=m=>(S.meses[m]&&S.meses[m].itens)||[];
+function listaMeses(){
+  const ks=Object.keys(S.meses).filter(k=>itens(k).length||S.meses[k].conta);
+  let a=ks.length?ks.sort()[0]:hojeM(),b=ks.length?ks.sort().slice(-1)[0]:hojeM();
+  if(hojeM()<a)a=hojeM();
+  const fim=addM(hojeM()>b?hojeM():b,6);
+  const out=[];for(let m=a;m<=fim;m=addM(m,1))out.push(m);return out;
+}
+function resumo(m){
+  const r={receita:0,fixo:0,divida:0,parcela:0,variavel:0,cat:{},forma:{},n:0};
+  for(const it of itens(m)){const v=+it.valor||0;r[it.secao]=(r[it.secao]||0)+v;r.n++;
+    if(it.secao!=="receita"){const c=it.cat||(it.secao==="divida"?"Dívidas":"Sem categoria");r.cat[c]=(r.cat[c]||0)+v;const f=it.forma||"Não informado";r.forma[f]=(r.forma[f]||0)+v;}}
+  r.saidas=r.fixo+r.divida+r.parcela+r.variavel;r.saldo=r.receita-r.saidas;return r;
+}
+function ultimosComDados(m,campo,n){const out=[];let x=addM(m,-1);for(let i=0;i<24&&out.length<n;i++,x=addM(x,-1)){const r=resumo(x);if(r[campo]>0)out.push(r[campo]);}return out;}
+function projecao(m){
+  const r=resumo(m);const est={receita:false,variavel:false,fixo:false};
+  if(S.estimar&&m>=hojeM()){
+    if(r.receita===0){const a=ultimosComDados(m,"receita",1);if(a.length){r.receita=a[0];est.receita=true;}}
+    if(r.fixo===0&&m>hojeM()){const a=ultimosComDados(m,"fixo",1);if(a.length){r.fixo=a[0];est.fixo=true;}}
+    const past=[];let x=addM(hojeM(),-1);for(let i=0;i<24&&past.length<3;i++,x=addM(x,-1)){const v=resumo(x).variavel;if(v>0)past.push(v);}
+    if(past.length){const media=past.reduce((a,b)=>a+b,0)/past.length;if(r.variavel<media*0.5&&m>hojeM()){r.variavel=Math.max(r.variavel,media);est.variavel=true;}}
+    r.saidas=r.fixo+r.divida+r.parcela+r.variavel;r.saldo=r.receita-r.saidas;
+  }
+  r.est=est;return r;
+}
+
+/* ---------- db ---------- */
+/* ---------- Firestore ---------- */
+let FB=null,AUTH=null,unsubs=[];
+function mutarMes(mes,fn){
+  if(!S.db)return Promise.reject(new Error("sem conexão"));
+  const ref=doc(S.db,"meses",mes);
+  return runTransaction(S.db,async tx=>{
+    const snap=await tx.get(ref);
+    const d=snap.exists()?JSON.parse(JSON.stringify(snap.data())):{mes,itens:[]};
+    if(!d.itens)d.itens=[];d.mes=mes;
+    fn(d);
+    d.atualizadoEm=new Date().toISOString();d.atualizadoPor=(S.user&&S.user.email)||"";
+    tx.set(ref,d);
+  });
+}
+function mutarInv(id,fn){
+  if(!S.db)return Promise.reject(new Error("sem conexão"));
+  const ref=doc(S.db,"investimentos",id);
+  return runTransaction(S.db,async tx=>{
+    const snap=await tx.get(ref);
+    const d=snap.exists()?JSON.parse(JSON.stringify(snap.data())):{movs:[]};
+    if(!d.movs)d.movs=[];
+    if(fn(d)==="apagar"){tx.delete(ref);return;}
+    d.atualizadoEm=new Date().toISOString();
+    tx.set(ref,d);
+  });
+}
+async function salvarConfig(cfg){if(!S.db)return;await setDoc(doc(S.db,"config","geral"),cfg);}
+async function conectar(){
+  const cfg=configFirebase();
+  if(!cfg){S.setup=true;render();return;}
+  try{
+    FB=initializeApp(cfg);
+    S.db=initializeFirestore(FB,{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()})});
+    AUTH=getAuth(FB);
+  }catch(e){S.erro=true;sync("Configuração do Firebase inválida: "+e.message);render();return;}
+  onAuthStateChanged(AUTH,u=>{
+    S.user=u||null;
+    if(u){sync("Conectando…");assinar();}
+    else{S.ready=true;S.meses={};S.invest={};unsubs.forEach(f=>{try{f();}catch(e){}});unsubs=[];sync("Entre para ver os lançamentos");}
+    render();
+  });
+}
+function assinar(){
+  unsubs.forEach(f=>{try{f();}catch(e){}});unsubs=[];
+  unsubs.push(onSnapshot(collection(S.db,"meses"),snap=>{
+    const m={};snap.forEach(d=>m[d.id]=d.data());S.meses=m;
+    if(!S.mes){const l=listaMeses();S.mes=l.includes(hojeM())?hojeM():l[l.length-1];}
+    S.ready=true;S.erro=false;
+    sync(((S.user&&(S.user.displayName||S.user.email))||"")+" · salvo na nuvem"+(snap.metadata.fromCache?" · offline":""));
+    render();
+  },err=>{S.erro=true;S.ready=true;
+    sync(err.code==="permission-denied"?"Este e-mail não tem acesso aos dados":"Erro de conexão: "+err.code);render();}));
+  unsubs.push(onSnapshot(collection(S.db,"investimentos"),snap=>{
+    const o={};snap.forEach(d=>o[d.id]={id:d.id,...d.data()});S.invest=o;if(S.ready)render();
+  },()=>{}));
+  unsubs.push(onSnapshot(doc(S.db,"config","geral"),s=>{
+    if(s.exists()){const c=s.data();if(c.cartoes&&c.cartoes.length){S.config={...c};render();}}
+  },()=>{}));
+}
+function sync(t){const e=document.getElementById("sync");if(e)e.textContent=t;}
+function configFirebase(){
+  if(FIREBASE_CONFIG&&FIREBASE_CONFIG.apiKey)return FIREBASE_CONFIG;
+  try{const j=localStorage.getItem("fin.fbconfig");if(j)return JSON.parse(j);}catch(e){}
+  return null;
+}
+async function entrar(){
+  try{await signInWithPopup(AUTH,new GoogleAuthProvider());}
+  catch(e){
+    if(String(e.code||"").indexOf("popup")>=0){try{await signInWithRedirect(AUTH,new GoogleAuthProvider());}catch(e2){toast("Não foi possível entrar: "+e2.code);}}
+    else toast("Não foi possível entrar: "+(e.code||e.message));
+  }
+}
+async function sair(){try{await signOut(AUTH);}catch(e){}}
+
+/* ---------- importação inicial e backup ---------- */
+async function importarPlanilha(){
+  if(!S.db||!S.user){toast("Entre com sua conta primeiro.");return;}
+  const existe=Object.values(S.meses).reduce((a,m)=>a+((m.itens||[]).length),0);
+  if(existe&&!S.confirmImport){S.confirmImport=true;render();return;}
+  S.importando=true;render();
+  try{
+    let n=0;
+    for(const [mes,d] of Object.entries(SEED)){await setDoc(doc(S.db,"meses",mes),{...d,importadoEm:new Date().toISOString()});n+=d.itens.length;}
+    toast(n+" lançamentos importados");
+  }catch(e){toast("Não deu certo: "+(e.code||e.message));}
+  S.importando=false;S.confirmImport=false;render();
+}
+function backupJSON(){baixarArquivo("backup-financeiro-"+hojeD()+".json",JSON.stringify({meses:S.meses,investimentos:S.invest,config:S.config},null,1),"application/json");}
+function backupCSV(){
+  const linhas=[["Mes","Secao","Data","Descricao","Parcela","Valor","Categoria","Forma de pagamento"]];
+  Object.keys(S.meses).sort().forEach(m=>(S.meses[m].itens||[]).forEach(i=>
+    linhas.push([m,SECOES[i.secao]?SECOES[i.secao].nome:i.secao,i.data||"",i.desc||"",i.parcela||"",String(i.valor==null?"":i.valor).replace(".",","),i.cat||"",i.forma||""])));
+  const csv="\ufeff"+linhas.map(l=>l.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(";")).join("\r\n");
+  baixarArquivo("lancamentos-"+hojeD()+".csv",csv,"text/csv");
+}
+
+/* ---------- envio direto para o Google Agenda ---------- */
+const B32="0123456789abcdefghijklmnopqrstuv";
+function idEvento(s){
+  let h1=0x811c9dc5,h2=0x01000193;
+  for(let i=0;i<s.length;i++){h1=(h1^s.charCodeAt(i))*16777619>>>0;h2=(h2+s.charCodeAt(i)*(i+7))>>>0;}
+  let out="ev";for(const h of [h1,h2]){let v=h;for(let i=0;i<7;i++){out+=B32[v&31];v>>>=5;}}
+  return out;
+}
+window.__gcalSync=async function(){
+  const prov=new GoogleAuthProvider();
+  prov.addScope("https://www.googleapis.com/auth/calendar.app.created");
+  toast("Abrindo o login do Google…");
+  const res=await signInWithPopup(AUTH,prov);
+  const cred=GoogleAuthProvider.credentialFromResult(res);
+  const tk=cred&&cred.accessToken;
+  if(!tk){toast("O Google não liberou o acesso à agenda.");return;}
+  const H={Authorization:"Bearer "+tk,"Content-Type":"application/json"};
+  let calId=null;try{calId=localStorage.getItem("fin.calid");}catch(e){}
+  if(!calId){
+    const r=await fetch("https://www.googleapis.com/calendar/v3/calendars",{method:"POST",headers:H,
+      body:JSON.stringify({summary:"Contas da casa",timeZone:"America/Sao_Paulo"})});
+    if(!r.ok)throw new Error("não consegui criar a agenda ("+r.status+")");
+    calId=(await r.json()).id;try{localStorage.setItem("fin.calid",calId);}catch(e){}
+  }
+  const {eventos}=eventosAgenda();
+  const lim=addDias(hojeD(),-40);
+  const lista=eventos.filter(e=>e.data>=lim);
+  let ok=0;
+  for(const e of lista){
+    const corpo={id:idEvento(e.id),summary:e.titulo+" · "+R(e.valor),
+      description:(e.tipo==="fatura"?"Fatura fechada do cartão":e.tipo==="divida"?"Parcela de dívida":"Conta fixa")+(e.forma?" · "+e.forma:""),
+      start:{date:e.data},end:{date:addDias(e.data,1)},transparency:"transparent",
+      reminders:{useDefault:false,overrides:[{method:"popup",minutes:900}]}};
+    let r=await fetch("https://www.googleapis.com/calendar/v3/calendars/"+encodeURIComponent(calId)+"/events",{method:"POST",headers:H,body:JSON.stringify(corpo)});
+    if(r.status===409)r=await fetch("https://www.googleapis.com/calendar/v3/calendars/"+encodeURIComponent(calId)+"/events/"+corpo.id,{method:"PUT",headers:H,body:JSON.stringify(corpo)});
+    if(r.ok)ok++;
+  }
+  toast(ok+" vencimentos enviados para a agenda \u201cContas da casa\u201d");
+};
+
+/* ---------- header ---------- */
+function renderHeader(){
+  const sel=document.getElementById("m-sel");const l=listaMeses();
+  if(!S.mes)S.mes=hojeM();if(!l.includes(S.mes))l.push(S.mes),l.sort();
+  sel.innerHTML=l.map(m=>`<option value="${m}"${m===S.mes?" selected":""}>${mLabel(m)}</option>`).join("");
+  document.getElementById("tabs").innerHTML=TABS.map(([k,n])=>`<button role="tab" data-tab="${k}" aria-selected="${S.tab===k}">${n}</button>`).join("");
+}
+
+/* ---------- views ---------- */
+function vInicio(){
+  const m=S.mes,r=resumo(m),p=projecao(m),ant=resumo(addM(m,-1));
+  const usaEst=p.est.receita||p.est.variavel;
+  const rec=r.receita,compDiv=r.divida+r.parcela,ratio=rec?compDiv/rec:0;
+  const nivel=ratio<.3?["ok","Saudável"]:ratio<.4?["at","Atenção"]:["bad","Alto"];
+  const maxv=Math.max(r.saidas,rec,1);
+  const flow=SAIDAS.map(s=>`<div class="flow-row"><span class="dot" style="background:${SECOES[s].cor}"></span><span>${SECOES[s].nome}</span><b class="num">${R(r[s])}</b></div>`).join("");
+  const barra=`<div class="bar" aria-hidden="true">${SAIDAS.map(s=>`<span style="width:${r[s]/maxv*100}%;background:${SECOES[s].cor}"></span>`).join("")}</div>`;
+  const barraRec=`<div class="bar" aria-hidden="true"><span style="width:${rec/maxv*100}%;background:var(--s-receita)"></span></div>`;
+  // faturas
+  const fats=S.config.cartoes.map(c=>({c,v:itens(m).filter(i=>i.forma===c.nome).reduce((a,i)=>a+(+i.valor||0),0)})).filter(x=>x.v>0);
+  const pix=r.forma["Pix"]||0;const conta=(S.meses[m]&&S.meses[m].conta)||{};
+  const cats=Object.entries(r.cat).sort((a,b)=>b[1]-a[1]).slice(0,6);const maxc=cats.length?cats[0][1]:1;
+  return `
+  ${S.erro?`<div class="banner">Não consegui conectar aos dados agora. Recarregue a página em instantes.</div>`:""}
+  <section class="hero">
+    <div class="panel">
+      <div class="eyebrow">Saldo de ${esc(mLong(m))}</div>
+      <div class="saldo num ${r.saldo>=0?"pos":"neg"}">${R(r.saldo)}</div>
+      <div class="muted">${r.saldo>=0?"Sobra depois de todas as contas lançadas.":"Falta para cobrir tudo que está lançado."}</div>
+      ${usaEst?`<div class="muted" style="margin-top:6px;font-size:13px">Com estimativas${p.est.receita?" de receita":""}${p.est.receita&&p.est.variavel?" e":""}${p.est.variavel?" de gastos do mês":""}: <b class="num ${p.saldo>=0?"pos":"neg"}">${R(p.saldo)}</b></div>`:""}
+      <div class="flow">
+        <div class="flow-row"><span class="dot" style="background:var(--s-receita)"></span><span>Receitas</span><b class="num">${R(rec)}</b></div>
+        ${barraRec}
+        ${flow}
+        ${barra}
+        <div class="flow-row" style="border-top:1px solid var(--line-2);padding-top:8px"><span></span><b>Total comprometido</b><b class="num">${R(r.saidas)}</b></div>
+      </div>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="panel">
+        <h2>Comprometido com dívidas e parcelas</h2>
+        <div class="gauge"><span class="big num">${rec?pct(ratio):"–"}</span><span class="pill ${nivel[0]}">${rec?nivel[1]:"Sem receita lançada"}</span></div>
+        <div class="muted" style="font-size:13.5px;margin-top:4px">${R(compDiv)} de ${R(rec)} de receita. Referência: até 30% é confortável.</div>
+      </div>
+      <div class="panel">
+        <h2>Faturas que vencem no mês</h2>
+        ${fats.length?fats.map(x=>`<div class="kv"><span>${esc(x.c.nome)} <span class="muted" style="font-size:12.5px">vence dia ${x.c.vencimento||"?"}</span></span><b class="num">${R(x.v)}</b></div>`).join(""):`<div class="muted">Nenhum gasto em cartão neste mês.</div>`}
+      </div>
+    </div>
+  </section>
+  <section class="grid g2">
+    <div class="panel"><h2>Leitura do mês</h2><ul class="insights">${dicas(m,r,ant).map(t=>`<li><span class="ic">${t[0]}</span><span>${t[1]}</span></li>`).join("")}</ul></div>
+    <div class="panel"><h2>Onde o dinheiro foi <span class="sub">categorias</span></h2>
+      ${cats.length?cats.map(([c,v])=>`<div class="catline"><span>${esc(c)}</span><div class="bar"><span style="width:${v/maxc*100}%;background:hsl(${hue(c)} 28% 52%)"></span></div><b class="num">${R(v)}</b></div>`).join('<div style="height:8px"></div>'):`<div class="muted">Sem gastos lançados.</div>`}
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Conta corrente <span class="sub">saldo informado menos os Pix do mês</span></h2>
+    <div class="form" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+      <div class="field"><label for="c-saldo">Saldo informado (R$)</label><input id="c-saldo" data-money inputmode="decimal" value="${fmtIn(conta.saldo)}" placeholder="0,00"></div>
+      <div class="field"><label for="c-data">Data da consulta</label><input id="c-data" type="date" value="${esc(conta.data||"")}"></div>
+      <div class="field"><label>(−) Pix do mês</label><div class="num" style="padding:9px 0;font-weight:600">${R(pix)}</div></div>
+      <div class="field"><label>(=) Saldo estimado</label><div class="num ${(conta.saldo||0)-pix>=0?"pos":"neg"}" style="padding:9px 0;font-weight:700">${conta.saldo!=null?R(conta.saldo-pix):"–"}</div></div>
+    </div>
+    <div class="actions" style="margin-top:10px"><button class="btn sm" data-action="salvar-conta">Salvar saldo</button></div>
+  </section>`;
+}
+function dicas(m,r,ant){
+  const out=[];
+  const top=Object.entries(r.cat).filter(([c])=>c!=="Dívidas").sort((a,b)=>b[1]-a[1]);
+  if(top.length&&r.saidas){out.push(["1",`<b>${esc(top[0][0])}</b> é a maior categoria do mês: ${R(top[0][1])} (${pct(top[0][1]/r.saidas)} do total).`]);}
+  const sub=Object.entries(r.cat).map(([c,v])=>[c,v-(ant.cat[c]||0),ant.cat[c]||0]).filter(x=>x[2]>0&&x[0]!=="Dívidas").sort((a,b)=>b[1]-a[1]);
+  if(sub.length&&sub[0][1]>50)out.push(["↑",`<b>${esc(sub[0][0])}</b> subiu ${R(sub[0][1])} em relação a ${mLabel(addM(m,-1))}.`]);
+  const fora=(r.cat["Restaurante"]||0)+(r.cat["Lazer & Bar"]||0);
+  if(fora>0&&r.receita)out.push(["$",`Restaurante + Lazer & Bar somam ${R(fora)} (${pct(fora/r.receita)} da receita). Cortar 20% aqui libera ${R(fora*.2)} no mês.`]);
+  const ass=r.cat["Assinaturas"]||0;
+  if(ass>0)out.push(["↻",`Assinaturas custam ${R(ass)} por mês, ou ${R(ass*12)} por ano. Vale revisar o que não está sendo usado.`]);
+  if(r.receita&&r.saldo<0)out.push(["!",`O mês fecha negativo em ${R(-r.saldo)}. Priorize adiar compras novas no cartão até a fatura normalizar.`]);
+  else if(r.receita&&r.saldo>0)out.push(["✓",`Sobra de ${R(r.saldo)}. Separar parte disso para a reserva de emergência (meta: 6 meses de custo fixo) é o próximo passo.`]);
+  if(!out.length)out.push(["i","Lance receitas e gastos deste mês para ver a leitura aqui."]);
+  return out.slice(0,5);
+}
+
+function linhaItem(it,m){
+  const meta=[];if(it.data)meta.push(fDate(it.data));if(it.parcela)meta.push("Parcela "+esc(it.parcela));
+  if(it.cat)meta.push(`<span class="cat">${esc(it.cat)}</span>`);if(it.forma)meta.push(esc(it.forma));
+  return `<button class="row${it.cat?" hascat":""}" style="--ch:${hue(it.cat)}" data-action="editar" data-id="${esc(it.id)}" data-mes="${m}"><span class="d">${esc(it.desc||"(sem descrição)")}</span><span class="v num ${it.secao==="receita"?"pos":""}">${R(it.valor)}</span><span class="meta">${meta.join("<span aria-hidden='true'>·</span>")}</span></button>`;
+}
+function vLancamentos(){
+  const m=S.mes,f=S.filtro,q=norm(f.q);
+  const chips=[["todos","Todos"],...ORDEM.map(s=>[s,SECOES[s].nome])].map(([k,n])=>`<button class="chip" data-filtro="${k}" aria-pressed="${f.secao===k}">${n}</button>`).join("");
+  const formas=[...new Set([...FORMAS,...itens(m).map(i=>i.forma).filter(Boolean)])];
+  let html=`<div class="toolbar"><input id="busca" type="search" placeholder="Buscar por descrição, categoria…" value="${esc(f.q)}" aria-label="Buscar">
+    <select id="f-forma-filtro" aria-label="Forma de pagamento"><option value="">Todas as formas</option>${formas.map(x=>`<option${x===f.forma?" selected":""}>${esc(x)}</option>`).join("")}</select></div>
+    <div class="chips">${chips}</div>`;
+  for(const s of ORDEM){
+    if(f.secao!=="todos"&&f.secao!==s)continue;
+    let l=itens(m).filter(i=>i.secao===s);
+    if(q)l=l.filter(i=>norm(i.desc+" "+(i.cat||"")+" "+(i.forma||"")).includes(q));
+    if(f.forma)l=l.filter(i=>i.forma===f.forma);
+    if(s==="variavel")l=l.slice().sort((a,b)=>(b.data||"").localeCompare(a.data||""));
+    const tot=l.reduce((a,i)=>a+(+i.valor||0),0);
+    html+=`<section class="sec"><div class="sec-h"><span class="dot" style="background:${SECOES[s].cor}"></span><h3>${SECOES[s].nome}</h3><span class="count">${l.length} ${l.length===1?"item":"itens"}</span><b class="num">${R(tot)}</b></div>
+    ${l.length?l.map(i=>linhaItem(i,m)).join(""):`<div class="empty">Nada lançado${q||f.forma?" com esse filtro":""}.</div>`}</section>`;
+  }
+  return html;
+}
+
+function vCartoes(){
+  const m=S.mes;
+  return `<div class="muted" style="font-size:14px">Fatura = tudo lançado com aquele cartão no mês de <b>pagamento</b> (${esc(mLong(m))}). As datas de fechamento e vencimento definem em qual fatura cai uma compra nova; confira no app do banco e ajuste se precisar.</div>
+  <div class="grid g2">${S.config.cartoes.map((c,idx)=>{
+    const l=itens(m).filter(i=>i.forma===c.nome);const tot=l.reduce((a,i)=>a+(+i.valor||0),0);
+    const porSec={};l.forEach(i=>porSec[i.secao]=(porSec[i.secao]||0)+(+i.valor||0));
+    const porCat={};l.forEach(i=>{const k=i.cat||SECOES[i.secao].curto;porCat[k]=(porCat[k]||0)+(+i.valor||0);});
+    const cats=Object.entries(porCat).sort((a,b)=>b[1]-a[1]);const mx=cats.length?cats[0][1]:1;
+    // compras feitas no mês (competência), independente da fatura
+    let comp=0;Object.keys(S.meses).forEach(k=>itens(k).forEach(i=>{if(i.forma===c.nome&&i.secao==="variavel"&&mOf(i.data)===m)comp+=+i.valor||0;}));
+    const fechM=+c.vencimento>+c.fechamento?m:addM(m,-1);
+    return `<div class="panel fat">
+      <div class="fat-top"><div><div class="eyebrow">${esc(c.nome)}</div><div class="fat-val num">${R(tot)}</div>
+      <div class="muted" style="font-size:13px">Fecha ${c.fechamento?String(c.fechamento).padStart(2,"0")+"/"+fechM.slice(5)+"/"+fechM.slice(0,4):"?"} · vence ${c.vencimento?String(c.vencimento).padStart(2,"0")+"/"+m.slice(5)+"/"+m.slice(0,4):"?"}</div></div>
+      <button class="btn sm" data-action="ver-cartao" data-nome="${esc(c.nome)}">Ver itens</button></div>
+      <div class="legend">${ORDEM.filter(s=>porSec[s]).map(s=>`<span><span class="dot" style="background:${SECOES[s].cor}"></span>${SECOES[s].nome} ${R(porSec[s])}</span>`).join("")}</div>
+      <div style="display:flex;flex-direction:column;gap:6px">${cats.slice(0,6).map(([k,v])=>`<div class="catline"><span>${esc(k)}</span><div class="bar"><span style="width:${v/mx*100}%;background:var(--accent)"></span></div><b class="num">${R(v)}</b></div>`).join("")||`<div class="muted">Sem itens nesta fatura.</div>`}</div>
+      <div class="kv" style="border-top:1px solid var(--line-2)"><span class="muted">Compras feitas em ${mLabel(m)} (qualquer fatura)</span><b class="num">${R(comp)}</b></div>
+      <div class="fat-cfg"><label for="fe-${idx}">Fecha dia</label><input id="fe-${idx}" data-cfg="fechamento" data-idx="${idx}" inputmode="numeric" value="${c.fechamento||""}"><label for="ve-${idx}">Vence dia</label><input id="ve-${idx}" data-cfg="vencimento" data-idx="${idx}" inputmode="numeric" value="${c.vencimento||""}"><button class="btn sm" data-action="salvar-cartao" data-idx="${idx}">Salvar datas</button></div>
+    </div>`;}).join("")}</div>`;
+}
+
+function calcDividas(ref){
+  const g={};
+  for(const k of Object.keys(S.meses))for(const it of itens(k)){
+    if(it.secao==="receita")continue;const p=parseParc(it.parcela);if(!p||p.n<2)continue;
+    const key=norm(it.desc)+"|"+p.n+"|"+Math.round((+it.valor||0)*100);
+    (g[key]=g[key]||{desc:(it.desc||"").trim(),forma:it.forma,n:p.n,secao:it.secao,its:[]}).its.push({mes:k,k:p.k,v:+it.valor||0});
+  }
+  const out=[];
+  for(const x of Object.values(g)){
+    x.its.sort((a,b)=>a.k-b.k);const first=x.its[0],last=x.its[x.its.length-1];
+    const antes=(first.k-1)*first.v,depois=Math.max(0,x.n-last.k)*last.v;
+    const total=antes+x.its.reduce((a,i)=>a+i.v,0)+depois;
+    const pago=antes+x.its.filter(i=>i.mes<=ref).reduce((a,i)=>a+i.v,0);
+    const quita=addM(last.mes,Math.max(0,x.n-last.k));
+    const inicio=addM(first.mes,-(first.k-1));
+    const atual=x.its.filter(i=>i.mes<=ref).map(i=>i.k).pop()||first.k-1;
+    const noMes=x.its.filter(i=>i.mes===ref).reduce((a,i)=>a+i.v,0);
+    if(total-pago>0.009&&inicio<=addM(ref,12))out.push({...x,total,pago,falta:total-pago,quita,inicio,atual,parcela:last.v,noMes});
+  }
+  return out.sort((a,b)=>b.falta-a.falta);
+}
+function vDividas(){
+  const m=S.mes,r=resumo(m),lst=calcDividas(m);
+  const semPrazo=itens(m).filter(i=>i.secao==="divida"&&!parseParc(i.parcela));
+  const faltaTot=lst.reduce((a,d)=>a+d.falta,0);
+  const comp=r.divida+r.parcela,ratio=r.receita?comp/r.receita:0;
+  const nivel=ratio<.3?["ok","Saudável"]:ratio<.4?["at","Atenção"]:["bad","Alto"];
+  const livre=[1,2,3,6].map(n=>{const mm=addM(m,n);const rr=resumo(mm);return [mm,rr.divida+rr.parcela];});
+  const deb=d=>`<div class="debt"><div><div class="t">${esc(d.desc)}</div><div class="m">${d.atual}/${d.n} pagas · parcela ${R(d.parcela)}${d.forma?" · "+esc(d.forma):""} · quita em ${mLabel(d.quita)}</div></div>
+    <div style="text-align:right"><div class="num" style="font-weight:700">${R(d.falta)}</div><div class="m num">de ${R(d.total)}</div></div>
+    <div class="bar"><span style="width:${d.pago/d.total*100}%;background:${SECOES[d.secao].cor}"></span></div></div>`;
+  const div=lst.filter(d=>d.secao==="divida"),par=lst.filter(d=>d.secao!=="divida");
+  return `<section class="grid g2">
+    <div class="panel"><h2>Renda comprometida em ${mLabel(m)}</h2>
+      <div class="gauge"><span class="big num">${r.receita?pct(ratio):"–"}</span><span class="pill ${nivel[0]}">${r.receita?nivel[1]:"Sem receita lançada"}</span></div>
+      <div class="kv"><span>Endividamentos</span><b class="num">${R(r.divida)}</b></div>
+      <div class="kv"><span>Parcelas</span><b class="num">${R(r.parcela)}</b></div>
+      <div class="kv"><span>Receita do mês</span><b class="num">${R(r.receita)}</b></div>
+    </div>
+    <div class="panel"><h2>Quanto ainda falta pagar</h2>
+      <div class="gauge"><span class="big num">${R(faltaTot)}</span></div>
+      <div class="muted" style="font-size:13.5px;margin-bottom:8px">Soma do saldo das dívidas e parcelamentos com prazo (${lst.length}). Consórcios sem prazo ficam de fora.</div>
+      ${livre.map(([mm,v])=>`<div class="kv"><span>Compromisso em ${mLabel(mm)}</span><b class="num">${R(v)}</b></div>`).join("")}
+    </div>
+  </section>
+  <section class="panel"><h2>Endividamentos <span class="sub">empréstimos, acordos, financiamentos</span></h2>
+    ${div.length?div.map(deb).join(""):`<div class="muted">Nenhum com prazo.</div>`}
+    ${semPrazo.length?`<div class="eyebrow" style="margin-top:14px">Sem prazo definido (em aberto)</div>${semPrazo.map(i=>`<div class="kv"><span>${esc(i.desc)}</span><b class="num">${R(i.valor)}/mês</b></div>`).join("")}`:""}
+  </section>
+  <section class="panel"><h2>Compras parceladas <span class="sub">${par.length} em aberto</span></h2>${par.length?par.map(deb).join(""):`<div class="muted">Nenhuma parcela em aberto.</div>`}</section>
+  <div class="muted" style="font-size:13px">A lista é montada sozinha a partir dos lançamentos que têm parcela no formato 3/10. Para uma dívida aparecer aqui, lance-a com o número da parcela.</div>`;
+}
+
+/* ---------- investimentos ---------- */
+function invStats(inv){
+  const movs=inv.movs||[];
+  const aportado=movs.reduce((a,x)=>a+(x.tipo==="resgate"?-1:1)*(+x.valor||0),0);
+  const saldo=inv.saldo!=null?+inv.saldo:aportado;
+  return {aportado,saldo,rend:saldo-aportado};
+}
+function vInvestimentos(){
+  const lista=Object.values(S.invest).map(i=>({...i,st:invStats(i)})).sort((a,b)=>b.st.saldo-a.st.saldo);
+  const tot=lista.reduce((a,i)=>a+i.st.saldo,0),totAp=lista.reduce((a,i)=>a+i.st.aportado,0),rend=tot-totAp;
+  const mesAp=lista.reduce((a,i)=>a+(i.movs||[]).filter(x=>mOf(x.data)===S.mes).reduce((b,x)=>b+(x.tipo==="resgate"?-1:1)*(+x.valor||0),0),0);
+  const fx=ultimosComDados(addM(S.mes,1),"fixo",3);const mediaFixo=fx.length?fx.reduce((a,b)=>a+b,0)/fx.length:0;
+  const meta=mediaFixo*6;
+  const reserva=lista.filter(i=>i.tipo==="Reserva de emergência").reduce((a,i)=>a+i.st.saldo,0);
+  const porTipo={};lista.forEach(i=>porTipo[i.tipo||"Outros"]=(porTipo[i.tipo||"Outros"]||0)+i.st.saldo);
+  const tipos=Object.entries(porTipo).sort((a,b)=>b[1]-a[1]);const mxT=tipos.length?tipos[0][1]:1;
+  const card=(t,v,sub,cls)=>`<div class="panel"><div class="eyebrow">${t}</div><div class="saldo num ${cls||""}" style="font-size:clamp(24px,4vw,32px)">${v}</div><div class="muted" style="font-size:13px">${sub}</div></div>`;
+  if(!lista.length) return `<section class="panel"><h2>Investimentos</h2>
+    <p class="muted" style="max-width:60ch">Ainda não tem nada lançado aqui. Cadastre cada investimento (nome, onde está aplicado e o saldo atual) e depois registre os aportes. O app calcula quanto foi aportado, quanto rendeu e o quanto já dá para cobrir de reserva de emergência.</p>
+    ${meta>0?`<p class="muted" style="font-size:13.5px">Sugestão de reserva de emergência: <b class="num">${R(meta)}</b>, que é 6 vezes a média dos seus gastos fixos (${R(mediaFixo)} por mês).</p>`:""}
+    <div class="actions"><button class="btn primary" data-action="inv-novo">+ Novo investimento</button></div></section>`;
+  return `<section class="grid g2">
+    ${card("Total investido",R(tot),`${lista.length} ${lista.length===1?"investimento":"investimentos"}`)}
+    ${card("Total aportado",R(totAp),"Dinheiro que vocês colocaram")}
+    ${card("Rendimento",R(rend),totAp>0?pct(rend/totAp)+" sobre o aportado":"Informe o saldo atual para calcular",rend>=0?"pos":"neg")}
+    ${card("Aportes em "+mLabel(S.mes),R(mesAp),"Entradas menos resgates no mês")}
+  </section>
+  ${meta>0?`<section class="panel"><h2>Reserva de emergência <span class="sub">meta: 6x os gastos fixos</span></h2>
+    <div class="bar" style="height:14px"><span style="width:${Math.min(100,meta?reserva/meta*100:0)}%;background:var(--pos)"></span></div>
+    <div class="meta-goal"><span>${R(reserva)} guardados</span><span>meta ${R(meta)}</span></div>
+    <div class="muted" style="font-size:13px;margin-top:6px">${reserva>=meta?"Reserva completa. O que passar disso pode ir para objetivos de prazo mais longo.":`Faltam ${R(meta-reserva)}. Marque como “Reserva de emergência” os investimentos que entram nessa conta.`}</div></section>`:""}
+  <section class="panel"><h2>Carteira por tipo</h2>
+    ${tipos.map(([t,v])=>`<div class="catline"><span>${esc(t)}</span><div class="bar"><span style="width:${v/mxT*100}%;background:hsl(${hue(t)} 28% 52%)"></span></div><b class="num">${R(v)}</b></div>`).join('<div style="height:8px"></div>')}
+  </section>
+  <div class="toolbar"><button class="btn primary" data-action="inv-novo">+ Novo investimento</button></div>
+  <section class="grid g2">${lista.map(i=>{
+    const aberto=S.invAberto===i.id;const movs=(i.movs||[]).slice().sort((a,b)=>(b.data||"").localeCompare(a.data||""));
+    return `<div class="inv">
+      <div class="inv-h">
+        <div><b>${esc(i.nome||"(sem nome)")}</b><div class="m">${esc(i.tipo||"Outros")}${i.instituicao?" · "+esc(i.instituicao):""}${i.dataSaldo?" · saldo de "+fDate(i.dataSaldo):""}</div></div>
+        <div style="text-align:right"><div class="num" style="font-weight:700;font-size:18px">${R(i.st.saldo)}</div>
+        <div class="m num">aportado ${R(i.st.aportado)} · rendeu <b class="${i.st.rend>=0?"pos":"neg"}">${R(i.st.rend)}</b></div></div>
+      </div>
+      <div class="bar"><span style="width:${tot?i.st.saldo/tot*100:0}%;background:hsl(${hue(i.tipo)} 28% 52%)"></span></div>
+      <div class="muted" style="font-size:12.5px">${tot?pct(i.st.saldo/tot):"0%"} da carteira</div>
+      <div class="inv-acts">
+        <button class="btn sm primary" data-action="inv-mov" data-id="${esc(i.id)}">+ Aporte / resgate</button>
+        <button class="btn sm" data-action="inv-edit" data-id="${esc(i.id)}">Editar saldo</button>
+        <button class="btn sm" data-action="inv-movs" data-id="${esc(i.id)}">${aberto?"Ocultar":"Movimentações ("+movs.length+")"}</button>
+      </div>
+      ${aberto?`<div class="movs">${movs.length?movs.map(mv=>`<div class="mov"><span class="num">${fDate(mv.data)}</span><span>${mv.tipo==="resgate"?"Resgate":"Aporte"}</span><b class="num ${mv.tipo==="resgate"?"neg":"pos"}">${R(mv.valor)}</b><button data-action="inv-mov-del" data-id="${esc(i.id)}" data-mid="${esc(mv.id)}">excluir</button></div>`).join(""):`<div class="muted">Nenhuma movimentação lançada.</div>`}</div>`:""}
+    </div>`;}).join("")}</section>`;
+}
+function abrirFormInv(inv){
+  MI={id:inv?inv.id:null,confirmDel:false};
+  const i=inv||{};
+  const tipos=[...new Set([...TIPOS_INV,i.tipo].filter(Boolean))];
+  document.getElementById("modal-root").innerHTML=`<div class="ov" id="ov"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt2">
+    <h3 id="mt2">${inv?"Editar investimento":"Novo investimento"}</h3>
+    <div class="form">
+      <div class="field full"><label for="i-nome">Nome</label><input id="i-nome" value="${esc(i.nome||"")}" placeholder="Ex.: Tesouro Selic 2029" autocomplete="off"></div>
+      <div class="field"><label for="i-tipo">Tipo</label><select id="i-tipo">${tipos.map(t=>`<option${t===i.tipo?" selected":""}>${esc(t)}</option>`).join("")}</select></div>
+      <div class="field"><label for="i-inst">Onde está aplicado</label><input id="i-inst" value="${esc(i.instituicao||"")}" placeholder="Ex.: Nubank, XP, C6" autocomplete="off"></div>
+      <div class="field"><label for="i-saldo">Saldo atual (R$)</label><input id="i-saldo" data-money inputmode="decimal" value="${fmtIn(i.saldo)}" placeholder="0,00"></div>
+      <div class="field"><label for="i-data">Data do saldo</label><input id="i-data" type="date" value="${esc(i.dataSaldo||hojeD())}"></div>
+    </div>
+    <div class="actions">${inv?`<button class="btn danger left" id="i-del">Excluir</button>`:""}<button class="btn" id="i-cancel">Cancelar</button><button class="btn primary" id="i-save">Salvar</button></div>
+  </div></div>`;
+  setTimeout(()=>{const e=document.getElementById("i-nome");e&&e.focus();},30);
+}
+function abrirFormMov(id){
+  const inv=S.invest[id];if(!inv)return;
+  MI={id,mov:true,tipo:"aporte"};
+  document.getElementById("modal-root").innerHTML=`<div class="ov" id="ov"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt3">
+    <h3 id="mt3">${esc(inv.nome||"Investimento")}</h3>
+    <div class="form">
+      <div class="field full"><label>Tipo de movimentação</label><div class="seg" id="v-tipo">
+        <button type="button" data-mtipo="aporte" aria-pressed="true">Aporte</button>
+        <button type="button" data-mtipo="resgate" aria-pressed="false">Resgate</button></div></div>
+      <div class="field"><label for="v-valor">Valor (R$)</label><input id="v-valor" data-money inputmode="decimal" placeholder="0,00"></div>
+      <div class="field"><label for="v-data">Data</label><input id="v-data" type="date" value="${hojeD()}"></div>
+      <label class="check full" style="grid-column:1/-1"><input type="checkbox" id="v-upd" checked> Atualizar o saldo atual com este valor</label>
+    </div>
+    <div class="actions"><button class="btn" id="i-cancel">Cancelar</button><button class="btn primary" id="v-save">Salvar</button></div>
+  </div></div>`;
+  setTimeout(()=>{const e=document.getElementById("v-valor");e&&e.focus();},30);
+}
+async function salvarInv(){
+  const g=id=>document.getElementById(id);
+  const nome=g("i-nome").value.trim();
+  if(!nome){toast("Dê um nome ao investimento.");g("i-nome").focus();return;}
+  const saldo=parseValor(g("i-saldo").value);
+  const dados={nome,tipo:g("i-tipo").value,instituicao:g("i-inst").value.trim(),saldo:isFinite(saldo)?saldo:0,dataSaldo:g("i-data").value||hojeD()};
+  const b=g("i-save");b.disabled=true;b.textContent="Salvando…";
+  try{await mutarInv(MI.id||uid(),d=>Object.assign(d,dados));toast(MI.id?"Investimento atualizado":"Investimento cadastrado");fecharForm();}
+  catch(e){toast("Não foi possível salvar.");b.disabled=false;b.textContent="Salvar";}
+}
+async function salvarMov(){
+  const g=id=>document.getElementById(id);
+  const valor=parseValor(g("v-valor").value);
+  if(!isFinite(valor)||valor<=0){toast("Informe o valor, ex.: 500,00");g("v-valor").focus();return;}
+  const data=g("v-data").value||hojeD(),tipo=MI.tipo,upd=g("v-upd").checked;
+  const b=g("v-save");b.disabled=true;b.textContent="Salvando…";
+  try{await mutarInv(MI.id,d=>{d.movs.push({id:uid(),data,tipo,valor});
+    if(upd){d.saldo=Math.round(((+d.saldo||0)+(tipo==="resgate"?-valor:valor))*100)/100;d.dataSaldo=data;}});
+    toast(tipo==="resgate"?"Resgate lançado":"Aporte lançado");fecharForm();}
+  catch(e){toast("Não foi possível salvar.");b.disabled=false;b.textContent="Salvar";}
+}
+async function excluirInv(){
+  const b=document.getElementById("i-del");
+  if(!MI.confirmDel){MI.confirmDel=true;b.textContent="Toque de novo para excluir";return;}
+  b.disabled=true;
+  try{await mutarInv(MI.id,()=>"apagar");toast("Investimento excluído");fecharForm();}
+  catch(e){toast("Não foi possível excluir.");b.disabled=false;}
+}
+
+/* ---------- agenda de vencimentos ----------
+   Entram só as contas que se paga uma a uma:
+   - a fatura fechada de cada cartão (uma por cartão, não as compras de dentro dela)
+   - endividamentos fora do cartão (financiamento, acordo, consórcio)
+   - gastos fixos fora do cartão (água, luz, internet, mensalidades)
+   Ficam de fora: compras parceladas no cartão e gastos do mês.            */
+const diaMes=(m,d)=>{const[y,mm]=m.split("-").map(Number);const ult=new Date(y,mm,0).getDate();return `${m}-${String(Math.min(Math.max(1,d),ult)).padStart(2,"0")}`;};
+function eventosAgenda(){
+  const out=[],semData=[];
+  for(const m of Object.keys(S.meses)){
+    S.config.cartoes.forEach(c=>{
+      const tot=itens(m).filter(i=>i.forma===c.nome).reduce((a,i)=>a+(+i.valor||0),0);
+      if(tot>0.009){
+        if(c.vencimento) out.push({id:"fatura|"+c.nome+"|"+m,data:diaMes(m,+c.vencimento),titulo:"Fatura "+c.nome,valor:tot,tipo:"fatura",mes:m});
+        else semData.push({titulo:"Fatura "+c.nome+" ("+mLabel(m)+")",motivo:"falta o dia de vencimento do cartão"});
+      }
+    });
+    itens(m).forEach(i=>{
+      if((i.secao!=="fixo"&&i.secao!=="divida")||isCartao(i.forma))return;
+      if(!i.valor)return;
+      const t=(i.desc||"Conta")+(i.parcela?" "+i.parcela:"");
+      if(i.data) out.push({id:"conta|"+m+"|"+i.id,data:i.data,titulo:t,valor:i.valor,tipo:i.secao,forma:i.forma,mes:m});
+      else semData.push({titulo:t+" ("+mLabel(m)+")",motivo:"falta a data no lançamento"});
+    });
+  }
+  out.sort((a,b)=>a.data.localeCompare(b.data)||b.valor-a.valor);
+  return {eventos:out,semData};
+}
+/* ---------- baixar arquivo (funciona no app hospedado e no artifact) ---------- */
+async function baixarArquivo(nome,texto,tipo){
+  try{
+    if(window.claude&&window.claude.use){
+      const dl=await window.claude.use("downloads");
+      if(dl){await dl.save({filename:nome,data:texto});toast("Arquivo gerado");return;}
+    }
+  }catch(e){}
+  try{
+    const b=new Blob([texto],{type:tipo+";charset=utf-8"});const u=URL.createObjectURL(b);
+    const a=document.createElement("a");a.href=u;a.download=nome;document.body.appendChild(a);a.click();
+    setTimeout(()=>{URL.revokeObjectURL(u);a.remove();},600);toast("Arquivo baixado");
+  }catch(e){toast("Não foi possível baixar o arquivo aqui.");}
+}
+async function enviarGoogleAgenda(){
+  if(typeof window.__gcalSync==="function"){try{await window.__gcalSync();}catch(e){toast("Não deu certo: "+(e.message||e));}return;}
+  toast("Envio direto só funciona no app hospedado. Use o arquivo .ics por enquanto.");
+}
+
+function vAgenda(){
+  const {eventos,semData}=eventosAgenda();
+  const hoje=hojeD();
+  const futuros=eventos.filter(e=>e.data>=hoje);
+  const proximos=futuros.slice(0,60);
+  const porMes={};proximos.forEach(e=>(porMes[mOf(e.data)]=porMes[mOf(e.data)]||[]).push(e));
+  const ic=t=>t==="fatura"?"💳":t==="divida"?"🏦":"🏠";
+  const totalMes=m=>(porMes[m]||[]).reduce((a,e)=>a+e.valor,0);
+  const seteDias=futuros.filter(e=>e.data<=addDias(hoje,7));
+  return `<section class="panel">
+    <h2>Agenda de vencimentos</h2>
+    <p class="muted" style="max-width:70ch;margin:0 0 12px">Entram aqui a fatura fechada de cada cartão, os boletos de dívida (financiamento, acordo, consórcio) e as contas fixas fora do cartão, como água, luz e internet. As compras parceladas e os gastos do mês não entram: eles já estão dentro da fatura do cartão.</p>
+    ${seteDias.length?`<div class="banner">Nos próximos 7 dias: ${seteDias.map(e=>esc(e.titulo)+" ("+fDate(e.data)+", "+R(e.valor)+")").join(" · ")}</div>`:""}
+    <div class="actions" style="justify-content:flex-start;margin-top:12px">
+      <button class="btn primary" data-action="ics">Baixar para o Google Agenda (.ics)</button>
+      <button class="btn" data-action="gcal">Enviar direto para o Google Agenda</button>
+    </div>
+    <p class="muted" style="font-size:12.5px;margin-top:8px">No arquivo .ics cada conta vira um evento de dia inteiro, com lembrete um dia antes às 9h. No Google Agenda: Configurações ▸ Importar e exportar ▸ Importar.</p>
+  </section>
+  ${Object.keys(porMes).sort().map(m=>`<section class="sec">
+    <div class="sec-h"><h3>${mLabel(m)}</h3><span class="count">${porMes[m].length} contas</span><b class="num">${R(totalMes(m))}</b></div>
+    ${porMes[m].map(e=>`<div class="row" style="cursor:default"><span class="d">${ic(e.tipo)} ${esc(e.titulo)}</span><span class="v num">${R(e.valor)}</span><span class="meta">${fDate(e.data)}${e.forma?"<span aria-hidden='true'>·</span>"+esc(e.forma):""}${e.tipo==="fatura"?"<span aria-hidden='true'>·</span>fatura fechada do cartão":""}</span></div>`).join("")}
+  </section>`).join("")||`<div class="panel muted">Nenhum vencimento futuro lançado.</div>`}
+  ${semData.length?`<section class="panel"><h2>Sem data definida <span class="sub">não entram na agenda</span></h2>
+    ${semData.slice(0,20).map(x=>`<div class="kv"><span>${esc(x.titulo)}</span><span class="muted" style="font-size:12.5px">${x.motivo}</span></div>`).join("")}</section>`:""}`;
+}
+const addDias=(d,n)=>{const x=new Date(d+"T12:00:00");x.setDate(x.getDate()+n);return x.toISOString().slice(0,10);};
+function icsTexto(){
+  const {eventos}=eventosAgenda();
+  const hoje=hojeD();
+  const stamp=new Date().toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
+  const esc2=t=>String(t).replace(/([,;\\\\])/g,"\\\\$1").replace(/\n/g,"\\\\n");
+  const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Financas Isabela e Gabriel//PT-BR","CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Contas da casa","X-WR-TIMEZONE:America/Sao_Paulo"];
+  eventos.filter(e=>e.data>=addDias(hoje,-40)).forEach(e=>{
+    const d=e.data.replace(/-/g,"");
+    L.push("BEGIN:VEVENT","UID:"+e.id.replace(/[^a-zA-Z0-9-]/g,"-")+"@financas.casa","DTSTAMP:"+stamp,
+      "DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+addDias(e.data,1).replace(/-/g,""),
+      "SUMMARY:"+esc2(e.titulo+" · "+R(e.valor)),
+      "DESCRIPTION:"+esc2((e.tipo==="fatura"?"Fatura fechada do cartão":e.tipo==="divida"?"Parcela de dívida":"Conta fixa")+(e.forma?" · "+e.forma:"")+" · lançado no controle financeiro da casa"),
+      "TRANSP:TRANSPARENT","BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+esc2(e.titulo),"TRIGGER;RELATED=START:-PT15H","END:VALARM","END:VEVENT");
+  });
+  L.push("END:VCALENDAR");
+  return L.join("\r\n");
+}
+
+function vRelatorios(){
+  const l=listaMeses();const cur=S.mes;
+  const ini=l.indexOf(cur);const ms=l.slice(Math.max(0,Math.min(ini-3,l.length-12)),Math.max(0,Math.min(ini-3,l.length-12))+12);
+  const P=ms.map(projecao);
+  // chart
+  const W=760,H=240,pl=56,pr=10,pt=14,pb=28;const vals=P.flatMap(p=>[p.saldo]);let mx=Math.max(1,...vals),mn=Math.min(0,...vals);
+  const niceStep=v=>{const e=Math.pow(10,Math.floor(Math.log10(v)));const f=v/e;return (f<=2?2:f<=5?5:10)*e;};
+  const step=niceStep((mx-mn)/4);mx=Math.ceil(mx/step)*step;mn=Math.floor(mn/step)*step;
+  const y=v=>pt+(mx-v)/(mx-mn)*(H-pt-pb);const bw=(W-pl-pr)/ms.length;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Saldo por mês">`;
+  for(let v=mn;v<=mx+1e-6;v+=step){svg+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line-2)" stroke-width="1"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end">${(v/1000).toLocaleString("pt-BR",{maximumFractionDigits:1})}k</text>`;}
+  svg+=`<line x1="${pl}" x2="${W-pr}" y1="${y(0)}" y2="${y(0)}" stroke="var(--faint)" stroke-width="1"/>`;
+  P.forEach((p,i)=>{const x=pl+i*bw+bw*.18,w=bw*.64;const y0=y(0),y1=y(p.saldo);const est=p.est.receita||p.est.variavel||p.est.fixo;
+    svg+=`<rect x="${x}" y="${Math.min(y0,y1)}" width="${w}" height="${Math.max(1,Math.abs(y1-y0))}" rx="3" fill="${p.saldo>=0?"var(--pos)":"var(--neg)"}" fill-opacity="${est?0.45:0.9}" ${ms[i]===cur?'stroke="var(--ink)" stroke-width="1.5"':""}><title>${mLabel(ms[i])}: ${R(p.saldo)}${est?" (com estimativa)":""}</title></rect>
+    <text x="${x+w/2}" y="${H-10}" text-anchor="middle"${ms[i]===cur?' style="font-weight:700;fill:var(--ink)"':""}>${MESES[+ms[i].slice(5)-1]}${ms[i].slice(5)==="01"?" "+ms[i].slice(2,4):""}</text>`;});
+  svg+="</svg>";
+  const linhas=[["Receitas","receita"],["Gastos fixos","fixo"],["Endividamentos","divida"],["Parcelas","parcela"],["Gastos do mês","variavel"]];
+  const th=ms.map(m=>`<th class="${m===cur?"cur":""}">${mLabel(m)}</th>`).join("");
+  const tbl1=`<div class="tbl-wrap"><table><thead><tr><th>Resumo</th>${th}</tr></thead><tbody>
+    ${linhas.map(([n,k])=>`<tr><td>${n}</td>${P.map((p,i)=>`<td class="num ${(k==="receita"&&p.est.receita)||(k==="variavel"&&p.est.variavel)||(k==="fixo"&&p.est.fixo)?"est":""} ${ms[i]===cur?"cur":""}">${p[k]?R(p[k]):"–"}</td>`).join("")}</tr>`).join("")}
+    <tr class="total"><td>Saldo</td>${P.map((p,i)=>`<td class="num ${p.saldo>=0?"pos":"neg"} ${ms[i]===cur?"cur":""}">${R(p.saldo)}</td>`).join("")}</tr>
+    <tr><td>Saldo acumulado</td>${(()=>{let a=0;return P.map((p,i)=>{a+=p.saldo;return `<td class="num ${a>=0?"":"neg"} ${ms[i]===cur?"cur":""}">${R(a)}</td>`;}).join("");})()}</tr>
+  </tbody></table></div>`;
+  // categorias / formas
+  const agg={};const porCompra=S.relModo==="compra"&&S.relTipo==="categoria";
+  for(const k of Object.keys(S.meses))for(const it of itens(k)){if(it.secao==="receita")continue;
+    const mm=porCompra&&it.data?mOf(it.data):k;if(!ms.includes(mm))continue;
+    const key=S.relTipo==="categoria"?(it.cat||(it.secao==="divida"?"Dívidas":"Sem categoria")):(it.forma||"Não informado");
+    (agg[key]=agg[key]||{})[mm]=(agg[key][mm]||0)+(+it.valor||0);}
+  const keys=Object.keys(agg).sort((a,b)=>{const sa=Object.values(agg[a]).reduce((x,y)=>x+y,0),sb=Object.values(agg[b]).reduce((x,y)=>x+y,0);return sb-sa;});
+  const tot=ms.map(m=>keys.reduce((a,k)=>a+(agg[k][m]||0),0));
+  const tbl2=`<div class="tbl-wrap"><table><thead><tr><th>${S.relTipo==="categoria"?"Categoria":"Forma de pagamento"}</th>${th}</tr></thead><tbody>
+    ${keys.map(k=>`<tr><td>${esc(k)}</td>${ms.map(m=>`<td class="num ${m===cur?"cur":""}">${agg[k][m]?R(agg[k][m]):"–"}</td>`).join("")}</tr>`).join("")}
+    <tr class="total"><td>Total</td>${tot.map((v,i)=>`<td class="num ${ms[i]===cur?"cur":""}">${R(v)}</td>`).join("")}</tr></tbody></table></div>`;
+  return `<section class="panel"><div class="fat-top"><h2 style="margin:0">Projeção dos próximos meses</h2>
+      <label class="check"><input type="checkbox" id="estimar" ${S.estimar?"checked":""}> Estimar o que ainda não foi lançado</label></div>
+      <div class="muted" style="font-size:13px;margin:6px 0 10px">Barras claras e valores em itálico usam estimativa: última receita e último total de gastos fixos lançados, e a média dos gastos do mês dos 3 últimos meses.</div>
+      <div class="chart">${svg}</div></section>
+    ${tbl1}
+    <section class="grid" style="gap:10px"><div class="toolbar">
+      <div class="switch" role="group" aria-label="Agrupar por"><button data-rel-tipo="categoria" aria-pressed="${S.relTipo==="categoria"}">Por categoria</button><button data-rel-tipo="forma" aria-pressed="${S.relTipo==="forma"}">Por forma de pagamento</button></div>
+      ${S.relTipo==="categoria"?`<div class="switch" role="group" aria-label="Mês de referência"><button data-rel-modo="pagamento" aria-pressed="${S.relModo==="pagamento"}">Mês do pagamento</button><button data-rel-modo="compra" aria-pressed="${S.relModo==="compra"}">Mês da compra</button></div>`:""}
+    </div>${tbl2}</section>`;
+}
+
+function vAjuda(){
+  return `<section class="panel help"><h2>Como usar</h2>
+  <p>Tudo o que um de vocês lança aparece na hora para o outro. Não existe botão de salvar geral: cada lançamento é salvo quando você toca em <b>Salvar</b>.</p>
+  <h3>No começo do mês</h3><ol>
+    <li>Escolha o mês lá em cima (setas ‹ ›).</li>
+    <li>Em <b>Lançamentos</b>, confira as <b>Receitas</b>. Se o salário ainda não estiver lá, toque em <b>+ Lançar</b> e escolha <b>Receita</b>.</li>
+    <li>Gastos fixos, dívidas e parcelas dos meses seguintes já vêm lançados. Confira se os valores continuam certos.</li></ol>
+  <h3>Durante o mês</h3><ol>
+    <li>Fez uma compra? Toque em <b>+ Lançar</b>, escolha <b>Gasto do mês</b>, preencha valor, descrição, data, categoria e cartão.</li>
+    <li>O campo <b>Mês da fatura</b> se preenche sozinho a partir da data e do cartão. Se a compra cair em outra fatura, é só trocar.</li>
+    <li>Compra parcelada: marque <b>Compra parcelada</b> e informe o número de parcelas. O sistema lança uma parcela em cada mês seguinte.</li>
+    <li>Conta fixa nova (ex.: assinatura): escolha <b>Gasto fixo</b> e use <b>Repetir nos próximos meses</b>.</li></ol>
+  <h3>Nos campos de valor</h3><p>É só digitar os números: o campo já coloca os centavos sozinho. Digitando 1 0 0 0 aparece 10,00; mais dois zeros e vira 1.000,00.</p>
+    <h3>Para corrigir ou apagar</h3><p>Toque no lançamento na lista. Altere o que precisar e toque em <b>Salvar</b>, ou em <b>Excluir</b> (toque duas vezes para confirmar).</p>
+  <h3>O que cada tela mostra</h3><ul>
+    <li><b>Início</b>: saldo do mês (verde sobra, vermelho falta), quanto da renda está comprometido com dívidas, faturas do mês e uma leitura com dicas.</li>
+    <li><b>Cartões</b>: valor de cada fatura, com as datas de fechamento e vencimento. Ajuste as datas se o banco mudar.</li>
+    <li><b>Dívidas</b>: tudo que está parcelado, quanto já foi pago, quanto falta e quando termina.</li>
+    <li><b>Investimentos</b>: cadastre cada aplicação com o saldo atual e registre os aportes. O app mostra quanto rendeu, como está dividida a carteira e o quanto falta para a reserva de emergência.</li>
+    <li><b>Relatórios</b>: projeção dos próximos meses e gastos por categoria ou forma de pagamento. A opção <b>Mês da compra</b> mostra quando o gasto aconteceu; <b>Mês do pagamento</b> mostra quando a fatura vence.</li></ul>
+  <h3>Seções</h3><ul>
+    <li><b>Receitas</b>: salários e entradas extras.</li>
+    <li><b>Gastos fixos</b>: contas que se repetem todo mês (água, internet, inglês, assinaturas).</li>
+    <li><b>Endividamentos</b>: acordos, financiamentos, consórcios, parcelamento de fatura.</li>
+    <li><b>Parcelas</b>: compras parceladas no cartão.</li>
+    <li><b>Gastos do mês</b>: o dia a dia (mercado, restaurante, combustível…).</li></ul>
+  </section>` + vDados();
+}
+
+/* ---------- login, configuração e dados ---------- */
+function vLogin(){
+  return `<section class="panel" style="max-width:520px;margin:24px auto;text-align:center">
+    <h2 style="font-size:22px">Controle financeiro da casa</h2>
+    <p class="muted">Entre com a conta Google para ver e lançar. Só os e-mails liberados abrem os dados.</p>
+    <div class="actions" style="justify-content:center"><button class="btn primary" id="btn-login" style="padding:12px 22px;font-size:16px">Entrar com Google</button></div>
+    <p class="muted" style="font-size:12.5px;margin-top:14px">Tudo fica salvo na nuvem e aparece na hora para os dois.</p>
+  </section>`;
+}
+function vSetup(){
+  return `<section class="panel help" style="max-width:660px;margin:16px auto">
+    <h2>Configuração inicial</h2>
+    <p>Cole a configuração do Firebase (Console do Firebase ▸ Configurações do projeto ▸ Seus apps ▸ Configuração do SDK).</p>
+    <textarea id="cfg-txt" rows="9" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:ui-monospace,monospace;font-size:12.5px" placeholder='{ "apiKey": "...", "authDomain": "...", "projectId": "...", "appId": "..." }'></textarea>
+    <div class="actions"><button class="btn primary" id="btn-cfg">Salvar e abrir</button></div>
+    <p class="muted" style="font-size:12.5px">Fica guardada neste navegador. Quando a configuração estiver gravada no arquivo, esta tela não aparece mais.</p>
+  </section>`;
+}
+function vDados(){
+  const qtd=Object.values(S.meses).reduce((a,m)=>a+((m.itens||[]).length),0);
+  const qtdSeed=Object.values(SEED).reduce((a,m)=>a+m.itens.length,0);
+  return `<section class="panel help">
+    <h2>Dados, backup e conta</h2>
+    <p>Há <b>${qtd}</b> lançamentos e <b>${Object.keys(S.invest).length}</b> investimentos salvos na nuvem. Tudo é gravado na hora, sem botão de salvar.</p>
+    <h3>Backup</h3>
+    <p>Mesmo com os dados na nuvem, baixe uma cópia de vez em quando e guarde no Drive.</p>
+    <div class="actions" style="justify-content:flex-start">
+      <button class="btn" data-action="backup-csv">Baixar lançamentos (.csv)</button>
+      <button class="btn" data-action="backup-json">Baixar backup completo (.json)</button>
+    </div>
+    <h3>Importar os lançamentos da planilha</h3>
+    <p>O app já vem com os ${qtdSeed} lançamentos da planilha (Jul/2026 a Jun/2027). Use uma vez, na primeira abertura.</p>
+    ${S.confirmImport?`<p class="banner">Já existem ${qtd} lançamentos. Importar de novo substitui os meses pelos dados da planilha. Toque outra vez para confirmar.</p>`:""}
+    <div class="actions" style="justify-content:flex-start">
+      <button class="btn ${S.confirmImport?"danger":""}" data-action="importar" ${S.importando?"disabled":""}>${S.importando?"Importando…":(S.confirmImport?"Confirmar importação":"Importar lançamentos da planilha")}</button>
+    </div>
+    <h3>Conta</h3>
+    <p>Você está como <b>${esc((S.user&&(S.user.email||S.user.displayName))||"")}</b>.</p>
+    <div class="actions" style="justify-content:flex-start"><button class="btn" id="btn-logout">Sair</button></div>
+  </section>`;
+}
+
+function render(){
+  renderHeader();
+  const main=document.getElementById("main");
+  document.body.classList.toggle("anon",S.setup||!S.user);
+  if(S.setup){main.innerHTML=vSetup();return;}
+  if(!S.user){main.innerHTML=vLogin();return;}
+  if(!S.ready&&!S.erro){main.innerHTML=`<div class="panel muted">Carregando os lançamentos…</div>`;return;}
+  const v={inicio:vInicio,lancamentos:vLancamentos,cartoes:vCartoes,agenda:vAgenda,dividas:vDividas,investimentos:vInvestimentos,relatorios:vRelatorios,ajuda:vAjuda}[S.tab];
+  const fab=document.getElementById("fab");
+  fab.textContent=S.tab==="investimentos"?"+ Investimento":"+ Lançar";
+  fab.hidden=S.tab==="ajuda";
+  const foco=document.activeElement&&document.activeElement.id==="busca";const pos=foco?document.activeElement.selectionStart:0;
+  main.innerHTML=v();
+  if(foco){const b=document.getElementById("busca");if(b){b.focus();b.setSelectionRange(pos,pos);}}
+}
+
+/* ---------- modal ---------- */
+let M=null,MI=null; // estado dos formulários (lançamento / investimento)
+function abrirForm(item,mes){
+  const novo=!item;
+  M={novo,orig:item?{...item}:null,origMes:mes||S.mes,secao:item?item.secao:"variavel",mesManual:!novo,confirmDel:false};
+  const it=item||{data:hojeD()};
+  const d=it.data||"";
+  const catOpts=`<option value="">(sem categoria)</option>`+[...new Set([...CATS,it.cat].filter(Boolean))].map(c=>`<option${c===it.cat?" selected":""}>${esc(c)}</option>`).join("");
+  const fOpts=`<option value="">(não informado)</option>`+[...new Set([...FORMAS,...S.config.cartoes.map(c=>c.nome),it.forma].filter(Boolean))].map(c=>`<option${c===it.forma?" selected":""}>${esc(c)}</option>`).join("");
+  const ms=listaMeses();const mm=mes||S.mes;if(!ms.includes(mm))ms.push(mm);
+  const mOpts=ms.sort().map(x=>`<option value="${x}"${x===mm?" selected":""}>${mLabel(x)}</option>`).join("");
+  document.getElementById("modal-root").innerHTML=`<div class="ov" id="ov"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <h3 id="mt">${novo?"Novo lançamento":"Editar lançamento"}</h3>
+    <div class="form">
+      <div class="field full"><label>Tipo</label><div class="seg" id="f-tipo">${ORDEM.map(s=>`<button type="button" data-sec="${s}" aria-pressed="${s===M.secao}">${SECOES[s].curto}</button>`).join("")}</div></div>
+      <div class="field full"><label for="f-desc">Descrição</label><input id="f-desc" value="${esc(it.desc||"")}" placeholder="Ex.: Mercado Pague Menos" autocomplete="off"></div>
+      <div class="field"><label for="f-valor">Valor (R$)</label><input id="f-valor" data-money inputmode="decimal" value="${fmtIn(it.valor)}" placeholder="0,00"></div>
+      <div class="field"><label for="f-data">Data da compra</label><input id="f-data" type="date" value="${esc(d)}"></div>
+      <div class="field"><label for="f-cat">Categoria</label><select id="f-cat">${catOpts}</select></div>
+      <div class="field"><label for="f-forma">Forma de pagamento</label><select id="f-forma">${fOpts}</select></div>
+      <div class="field"><label for="f-mes">Mês da fatura / pagamento</label><select id="f-mes">${mOpts}</select><span class="hint" id="f-mes-hint"></span></div>
+      <div class="field"><label for="f-parc">Parcela</label><input id="f-parc" value="${esc(it.parcela||"")}" placeholder="Ex.: 3/10"></div>
+      ${novo?`<div class="box full" id="f-extra"></div>`:""}
+    </div>
+    <div class="actions">${novo?"":`<button class="btn danger left" id="f-del">Excluir</button>`}<button class="btn" id="f-cancel">Cancelar</button><button class="btn primary" id="f-save">Salvar</button></div>
+  </div></div>`;
+  atualizarForm();
+  setTimeout(()=>{const e=document.getElementById(novo?"f-valor":"f-desc");e&&e.focus();},30);
+}
+function atualizarForm(){
+  document.querySelectorAll("#f-tipo button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.sec===M.secao));
+  const ex=document.getElementById("f-extra");
+  if(ex){
+    if(M.secao==="variavel"||M.secao==="parcela"){ex.hidden=false;
+      if(!ex.dataset.k||ex.dataset.k!=="parc"){ex.dataset.k="parc";ex.innerHTML=`<label class="check full" style="grid-column:1/-1"><input type="checkbox" id="x-parc"${M.secao==="parcela"?" checked":""}> Compra parcelada</label>
+        <div class="field"><label for="x-n">Nº de parcelas</label><input id="x-n" inputmode="numeric" placeholder="Ex.: 10"></div>
+        <div class="field"><label for="x-k">Começar da parcela</label><input id="x-k" inputmode="numeric" value="1"></div>
+        <div class="hint" style="grid-column:1/-1;font-size:12px;color:var(--faint)">O valor informado é o de cada parcela. Uma parcela é lançada em cada mês a partir do mês da fatura.</div>`;}
+    } else if(M.secao==="fixo"||M.secao==="divida"||M.secao==="receita"){ex.hidden=false;
+      if(ex.dataset.k!=="rep"){ex.dataset.k="rep";ex.innerHTML=`<div class="field"><label for="x-rep">Repetir nos próximos meses</label><select id="x-rep">${[0,1,2,3,5,11].map(n=>`<option value="${n}">${n?"+ "+n+(n===1?" mês":" meses"):"Só este mês"}</option>`).join("")}</select></div>`;}
+    }
+  }
+  sugerirMes();
+}
+function sugerirMes(){
+  const h=document.getElementById("f-mes-hint");if(!h)return;
+  const data=document.getElementById("f-data").value,forma=document.getElementById("f-forma").value;
+  if(M.secao==="variavel"||M.secao==="parcela"){
+    const sug=data?mesFatura(data,forma):null;
+    if(sug&&!M.mesManual){const sel=document.getElementById("f-mes");if(![...sel.options].some(o=>o.value===sug)){const o=document.createElement("option");o.value=sug;o.textContent=mLabel(sug);sel.appendChild(o);}sel.value=sug;}
+    h.textContent=sug?(isCartao(forma)?"Pela data e pelo fechamento do cartão, cai na fatura de "+mLabel(sug)+".":"Pago no mês da compra."):"";
+  } else h.textContent="";
+}
+function fecharForm(){document.getElementById("modal-root").innerHTML="";M=null;MI=null;}
+async function salvarForm(){
+  const g=id=>document.getElementById(id);
+  const valor=parseValor(g("f-valor").value);const desc=g("f-desc").value.trim();
+  if(!desc){toast("Preencha a descrição.");g("f-desc").focus();return;}
+  if(!isFinite(valor)){toast("Informe o valor, ex.: 125,90");g("f-valor").focus();return;}
+  const base={secao:M.secao,desc,valor};
+  const data=g("f-data").value,cat=g("f-cat").value,forma=g("f-forma").value,parc=g("f-parc").value.trim();
+  if(data)base.data=data;if(cat)base.cat=cat;if(forma)base.forma=forma;if(parc)base.parcela=parc;
+  const mes=g("f-mes").value;
+  const btn=g("f-save");btn.disabled=true;btn.textContent="Salvando…";
+  try{
+    if(!M.novo){
+      const id=M.orig.id;const it={...base,id};
+      if(mes===M.origMes)await mutarMes(mes,d=>{const i=d.itens.findIndex(x=>x.id===id);if(i>=0)d.itens[i]=it;else d.itens.push(it);});
+      else{await mutarMes(M.origMes,d=>{d.itens=d.itens.filter(x=>x.id!==id);});await mutarMes(mes,d=>{d.itens.push(it);});}
+      toast("Lançamento atualizado");
+    }else{
+      const xp=g("x-parc");
+      if(xp&&xp.checked){
+        const n=parseInt(g("x-n").value,10),k0=parseInt(g("x-k").value,10)||1;
+        if(!(n>=2&&n<=120)||k0>n){toast("Informe o nº de parcelas (2 a 120).");btn.disabled=false;btn.textContent="Salvar";return;}
+        for(let k=k0,i=0;k<=n;k++,i++){const it={...base,secao:"parcela",parcela:String(k).padStart(2,"0")+"/"+String(n).padStart(2,"0"),id:uid()};await mutarMes(addM(mes,i),d=>d.itens.push(it));}
+        toast(`${n-k0+1} parcelas lançadas até ${mLabel(addM(mes,n-k0))}`);
+      }else{
+        const rep=g("x-rep")?parseInt(g("x-rep").value,10)||0:0;
+        for(let i=0;i<=rep;i++){const it={...base,id:uid()};if(i&&it.data){const nm=addM(mOf(it.data),i);const [yy,mo]=nm.split("-").map(Number);const dim=new Date(yy,mo,0).getDate();it.data=nm+"-"+String(Math.min(+it.data.slice(8,10),dim)).padStart(2,"0");}await mutarMes(addM(mes,i),d=>d.itens.push(it));}
+        toast(rep?`Lançado em ${rep+1} meses`:"Lançado");
+      }
+    }
+    fecharForm();
+  }catch(e){toast("Não foi possível salvar. Verifique a conexão e tente de novo.");btn.disabled=false;btn.textContent="Salvar";}
+}
+async function excluirForm(){
+  const b=document.getElementById("f-del");
+  if(!M.confirmDel){M.confirmDel=true;b.textContent="Toque de novo para excluir";return;}
+  b.disabled=true;
+  try{const id=M.orig.id;await mutarMes(M.origMes,d=>{d.itens=d.itens.filter(x=>x.id!==id);});toast("Lançamento excluído");fecharForm();}
+  catch(e){toast("Não foi possível excluir.");b.disabled=false;}
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button,[data-action]");if(!t)return;
+  if(t.dataset.tab){S.tab=t.dataset.tab;try{localStorage.setItem("fin.tab",S.tab);}catch(_){}render();window.scrollTo({top:0});return;}
+  if(t.id==="m-prev"||t.id==="m-next"){const l=listaMeses();const i=l.indexOf(S.mes)+(t.id==="m-next"?1:-1);S.mes=i<0?addM(S.mes,-1):i>=l.length?addM(S.mes,1):l[i];render();return;}
+  if(t.id==="btn-login"){entrar();return;}
+  if(t.id==="btn-logout"){sair();return;}
+  if(t.id==="btn-cfg"){const v=document.getElementById("cfg-txt").value.trim();
+    try{
+      let j=v.slice(v.indexOf("{"),v.lastIndexOf("}")+1).replace(/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,'$1"$2":').replace(/'/g,'"').replace(/,\s*}/g,"}");
+      j=JSON.parse(j);
+      if(!j.apiKey||!j.projectId)throw new Error("faltam apiKey/projectId");
+      localStorage.setItem("fin.fbconfig",JSON.stringify(j));location.reload();
+    }catch(e){toast("Configuração inválida: "+e.message);}return;}
+  if(t.dataset.action==="importar"){importarPlanilha();return;}
+  if(t.dataset.action==="backup-json"){backupJSON();return;}
+  if(t.dataset.action==="backup-csv"){backupCSV();return;}
+  if(t.id==="fab"){if(!S.db){toast("Sem conexão com os dados.");return;}
+    if(S.tab==="investimentos")abrirFormInv(null);else abrirForm(null,S.mes);return;}
+  if(t.dataset.mtipo&&MI){MI.tipo=t.dataset.mtipo;document.querySelectorAll("#v-tipo button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mtipo===MI.tipo));return;}
+  if(t.id==="i-cancel"){fecharForm();return;}
+  if(t.id==="i-save"){salvarInv();return;}
+  if(t.id==="i-del"){excluirInv();return;}
+  if(t.id==="v-save"){salvarMov();return;}
+  if(t.dataset.filtro){S.filtro.secao=t.dataset.filtro;render();return;}
+  if(t.dataset.relTipo){S.relTipo=t.dataset.relTipo;render();return;}
+  if(t.dataset.relModo){S.relModo=t.dataset.relModo;render();return;}
+  if(t.dataset.sec&&M){M.secao=t.dataset.sec;atualizarForm();return;}
+  if(t.id==="f-cancel"){fecharForm();return;}
+  if(t.id==="f-save"){salvarForm();return;}
+  if(t.id==="f-del"){excluirForm();return;}
+  const a=t.dataset.action;
+  if(a==="editar"){const it=itens(t.dataset.mes).find(x=>x.id===t.dataset.id);if(it)abrirForm(it,t.dataset.mes);return;}
+  if(a==="ver-cartao"){S.tab="lancamentos";S.filtro={secao:"todos",q:"",forma:t.dataset.nome};render();window.scrollTo({top:0});return;}
+  if(a==="salvar-cartao"){const i=+t.dataset.idx;const fe=parseInt(document.getElementById("fe-"+i).value,10),ve=parseInt(document.getElementById("ve-"+i).value,10);
+    if(!(fe>=1&&fe<=31&&ve>=1&&ve<=31)){toast("Use dias entre 1 e 31.");return;}
+    const cs=S.config.cartoes.map((c,j)=>j===i?{...c,fechamento:fe,vencimento:ve}:c);S.config={...S.config,cartoes:cs};
+    salvarConfig(S.config).then(()=>toast("Datas do cartão salvas")).catch(()=>toast("Não foi possível salvar."));render();return;}
+  if(a==="ics"){baixarArquivo("contas-da-casa.ics",icsTexto(),"text/calendar");return;}
+  if(a==="gcal"){enviarGoogleAgenda();return;}
+  if(a==="inv-novo"){if(!S.db){toast("Sem conexão com os dados.");return;}abrirFormInv(null);return;}
+  if(a==="inv-edit"){abrirFormInv(S.invest[t.dataset.id]);return;}
+  if(a==="inv-mov"){abrirFormMov(t.dataset.id);return;}
+  if(a==="inv-movs"){S.invAberto=S.invAberto===t.dataset.id?null:t.dataset.id;render();return;}
+  if(a==="inv-mov-del"){const id=t.dataset.id,mid=t.dataset.mid;
+    mutarInv(id,d=>{d.movs=(d.movs||[]).filter(x=>x.id!==mid);}).then(()=>toast("Movimentação excluída. O saldo atual não mudou, ajuste em 'Editar saldo' se precisar.")).catch(()=>toast("Não foi possível excluir."));return;}
+  if(a==="salvar-conta"){const v=parseValor(document.getElementById("c-saldo").value),d=document.getElementById("c-data").value;
+    const conta=isFinite(v)?{saldo:v,data:d||hojeD()}:null;
+    mutarMes(S.mes,doc=>{if(conta)doc.conta=conta;else delete doc.conta;}).then(()=>toast("Saldo salvo")).catch(()=>toast("Não foi possível salvar."));return;}
+});
+document.addEventListener("click",e=>{if(e.target.id==="ov")fecharForm();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&(M||MI))fecharForm();if(e.key==="Enter"&&M&&e.target.tagName==="INPUT"&&e.target.type!=="checkbox"){e.preventDefault();salvarForm();}});
+document.addEventListener("input",e=>{
+  if(e.target.matches("[data-money]"))maskMoney(e.target);
+  if(e.target.id==="busca"){S.filtro.q=e.target.value;render();}
+});
+document.addEventListener("change",e=>{
+  const id=e.target.id;
+  if(id==="m-sel"){S.mes=e.target.value;render();}
+  else if(id==="f-forma-filtro"){S.filtro.forma=e.target.value;render();}
+  else if(id==="estimar"){S.estimar=e.target.checked;render();}
+  else if(id==="f-mes"&&M){M.mesManual=true;sugerirMes();}
+  else if((id==="f-data"||id==="f-forma")&&M){if(M.novo)M.mesManual=false;sugerirMes();}
+  else if(id==="x-parc"&&M&&e.target.checked&&M.secao==="variavel"){M.secao="parcela";atualizarForm();}
+});
+
+render();
+conectar();
+})();
+
+if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
